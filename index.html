@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ECHOES v2.22 — The Last Echo</title>
+    <title>ECHOES v2.23 — The Last Echo</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Noto+Sans+KR:wght@400;700&display=swap');
 
@@ -156,7 +156,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 
         .build-version { color:#a79a7e; font-size:0.72rem; letter-spacing:1.6px; text-align:center; margin:2px 0 8px; }
 
-/* v2.22 combat alignment, feedback, status and sticky sorting */
+/* v2.23 combat alignment, feedback, status and sticky sorting */
 .battle-arena{grid-template-rows:auto 1fr;padding-top:12px;min-height:340px;align-items:stretch}
 .battle-arena .reward-preview{grid-column:1/-1;grid-row:1;z-index:3;justify-self:center;background:#201b14ed;border:1px solid #ad883d;border-radius:7px;padding:6px 16px;margin:0 0 6px;font-size:.82rem;color:#ffd57a}
 .battle-arena .entity-card{grid-row:2;display:grid;grid-template-rows:112px 34px minmax(46px,auto) 22px;align-items:end;justify-items:center;gap:4px;min-height:245px;align-content:end}
@@ -185,7 +185,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 @media(max-width:420px){.battle-arena{min-height:305px}.battle-arena .entity-card{grid-template-rows:90px 31px minmax(55px,auto) 20px;min-height:215px}.status-equip-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 
-/* v2.22: shared ground line, opposing characters, details below combatants */
+/* v2.23: shared ground line, opposing characters, details below combatants */
 .battle-arena{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:44px minmax(0,1fr);gap:0 10px;min-height:330px;padding:10px 12px 14px;align-items:stretch}
 .battle-arena .reward-preview{grid-row:1;align-self:start;margin:0;max-width:92%;box-sizing:border-box}
 .battle-arena .entity-card{grid-row:2;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:140px 28px minmax(48px,auto) 22px;gap:3px;align-content:end;justify-items:center;min-height:245px;padding:5px 8px 7px;background:rgba(11,14,22,.55);border-color:rgba(142,132,118,.45)}
@@ -203,7 +203,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 @media(max-width:420px){.battle-arena{min-height:292px;padding:8px 5px 10px;gap:0 5px;grid-template-rows:42px minmax(0,1fr)}.battle-arena .entity-card{grid-template-rows:105px 26px minmax(54px,auto) 20px;min-height:218px;padding:4px}.battle-arena .pixel-figure{height:105px;margin-right:0}.battle-arena .enemy-card .pixel-figure{margin-left:0}.battle-arena .pixel-sprite{height:104px;width:104px}}
 
     
-/* v2.22 — wide theatrical stage: actors at opposite edges, open center */
+/* v2.23 — wide theatrical stage: actors at opposite edges, open center */
 .battle-arena {
   grid-template-columns: minmax(0, 29%) minmax(0, 42%) minmax(0, 29%);
   grid-template-rows: 46px minmax(0,1fr);
@@ -258,7 +258,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 }
 
 
-/* v2.22 - status clarity, loot comparison, collections */
+/* v2.23 - status clarity, loot comparison, collections */
 .battle-arena .player-effects {grid-row:3;grid-column:1;align-self:center;width:100%;box-sizing:border-box;}
 .player-effects {font-size:.75rem; color:#b7d9f8; min-height:34px; text-align:center; display:flex; flex-wrap:wrap; gap:4px; justify-content:center; align-items:center; padding:3px;}
 .effect-chip {display:inline-block; border:1px solid #42637c; background:#14202d; border-radius:5px; padding:2px 5px;}
@@ -290,6 +290,49 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 .status-hand-row.powerful{border-color:#d58139!important;background:rgba(194,91,25,.12)!important}
 .status-hand-row.mastered{border-color:#e05b5b!important;background:rgba(178,32,38,.16)!important;box-shadow:inset 3px 0 #d94848}
 .equip-slot{cursor:default}
+
+/* v2.23: compact play layout, no overlapping header and fixed intent rows */
+.enemy-intent{display:block!important;width:100%;box-sizing:border-box;text-align:center;white-space:normal;overflow-wrap:normal!important;padding:4px 2px!important}
+.enemy-damage-line{display:block;white-space:nowrap;font-size:clamp(10px,1.3vw,13px)}
+.enemy-damage-line.expected{color:#7ae28a;margin-top:3px}
+#game-screen{position:relative}
+.top-buttons{position:static!important;display:flex;flex-wrap:wrap;justify-content:center;gap:6px;width:100%;box-sizing:border-box;margin-bottom:6px}
+.top-buttons .btn-top{font-size:.77rem;padding:7px 9px;white-space:nowrap}
+.game-title{line-height:1.15}
+.inventory-hint{font-size:.7rem;margin:4px 0}
+.equipment-controls{margin:4px 0}
+.inventory-grid{margin-bottom:5px}
+@media(min-width:900px) and (min-height:650px){
+ body{padding:8px 12px 20px}
+ #game-screen{max-width:1250px;width:100%;display:grid!important;grid-template-columns:minmax(0,1.1fr) minmax(390px,.9fr);column-gap:18px;row-gap:5px;align-items:start;align-content:start}
+ #game-screen>.top-buttons,#game-screen>.game-title,#game-screen>.build-version,#game-screen>#stage-display{grid-column:1/-1;justify-self:center;margin:0}
+ #game-screen>.top-buttons{margin-bottom:0}
+ #game-screen>.battle-arena{grid-column:1;grid-row:5 / span 5;margin:0}
+ #game-screen>.dashboard{grid-column:2;grid-row:5;margin:0;box-sizing:border-box}
+ #game-screen>.inventory-hint{grid-column:2;grid-row:6;margin:0}
+ #game-screen>.equipment-controls{grid-column:2;grid-row:7;margin:0}
+ #game-screen>.inventory-grid{grid-column:2;grid-row:8;margin:0}
+ #game-screen>.dice-container{grid-column:1;grid-row:10}
+ #game-screen>div:has(>#sort-btn){grid-column:1;grid-row:11}
+ #game-screen>.recommendation-box{grid-column:2;grid-row:9;margin:0}
+ #game-screen>#roll-btn{grid-column:2;grid-row:10;margin:0}
+ #game-screen>#result-display{grid-column:2;grid-row:11;margin:0}
+ #game-screen>.hands-container{grid-column:1/-1;grid-row:12;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:3px}
+ .hands-container .hand-row{margin:0;min-width:0}
+ .battle-arena{min-height:290px!important}
+ .battle-arena .entity-card{min-height:220px!important}
+}
+@media(max-width:899px){
+ .battle-arena{min-height:265px!important;margin-bottom:5px}
+ .battle-arena .entity-card{min-height:205px!important}
+ .battle-arena .pixel-figure,.battle-arena .enemy-card .pixel-figure{height:94px!important}
+ .battle-arena .pixel-sprite{height:94px!important;width:94px!important}
+ .battle-arena .entity-card{grid-template-rows:94px 26px minmax(62px,auto) 20px!important}
+ .inventory-grid .equip-slot{min-height:30px;padding:3px 2px}
+ .inventory-grid .item-name{font-size:.69rem}
+ .dashboard{margin-bottom:5px;padding:7px}
+}
+@media(max-width:390px){.top-buttons .btn-top{font-size:.68rem;padding:6px 5px}.enemy-damage-line{font-size:10px}}
 </style>
 </head>
 <body>
@@ -297,12 +340,13 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
     <div id="intro-screen">
         <div class="intro-title">ECHOES</div>
         <div class="intro-subtitle">Dice of the Dark</div>
-        <div class="build-version">TEST BUILD · v2.22</div>
+        <div class="build-version">TEST BUILD · v2.23</div>
         <button class="intro-btn start" onclick="startGame()">▶ 새 게임 시작</button>
         <button class="intro-btn" id="continue-btn" onclick="continueGame()" style="display:none;border-color:#d4af37;color:#f4d77e">↪ 이어하기</button>
         <button class="intro-btn" onclick="showRecords()">🏆 기록 및 업적</button>
         <button class="intro-btn" onclick="location.href='dashboard.html'">📋 개발 퀘스트 대시보드</button>
         <button class="intro-btn" onclick="showCollection()">📚 발견한 장비 도감</button>
+        <button class="intro-btn" onclick="location.href='test.html'">🧪 자동 테스트 · 오류 로그</button>
     </div>
 
     <div id="game-screen">
@@ -312,7 +356,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         </div>
 
         <h1 class="game-title">ECHOES</h1>
-        <div class="build-version">TEST BUILD · v2.22</div>
+        <div class="build-version">TEST BUILD · v2.23</div>
         <div id="stage-display">STAGE 1</div>
 
         <div class="battle-arena">
@@ -342,7 +386,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
             <div>🔄<span style="color:#fa5252;"><span id="ui-rolls">2</span>/<span id="ui-max-rolls">2</span></span></div>
         </div>
 
-        <div class="inventory-hint" role="note">💡 장비 칸을 터치하면 장착 아이템의 상세 능력치를 펼치거나 닫을 수 있습니다.</div>
+        <div class="inventory-hint" role="note">💡 장비 상세 정보는 아래 버튼으로 한 번에 펼치거나 숨길 수 있습니다.</div>
         <div class="equipment-controls"><span>🎒 장비 능력치</span><button type="button" id="equipment-details-btn" onclick="toggleEquipmentDetails()" aria-pressed="false">상세 정보 보기</button></div>
         <div class="inventory-grid" id="inventory-grid">
             <div class="equip-slot" id="slot-helmet"><div class="slot-name">투구</div><div class="item-name">-</div></div>
@@ -583,7 +627,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         { id: 'chance', name: '찬스', basePower: 0, baseFocus: 1, level: 1, pUp: 0, fUp: 0 }
     ];
 
-    // v2.22: 이어하기는 이 브라우저의 localStorage에만 저장됩니다.
+    // v2.23: 이어하기는 이 브라우저의 localStorage에만 저장됩니다.
     const RUN_SAVE_KEY = 'echoesRun_v218';
     let shopOffers = [];
     let shopSold = [];
@@ -790,7 +834,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         });
         const expectedMin = Math.max(0, enemyObj.minD - baseDefenseBonus);
         const expectedMax = Math.max(0, enemyObj.maxD - baseDefenseBonus);
-        document.getElementById('enemy-intent').innerHTML = `⚔️ 공격: ${enemyObj.minD}~${enemyObj.maxD} <span style="color:#4cd137;">(예상피해: ${expectedMin}~${expectedMax})</span>`;
+        document.getElementById('enemy-intent').innerHTML = `<span class="enemy-damage-line">⚔️ 공격: ${enemyObj.minD}~${enemyObj.maxD}</span><span class="enemy-damage-line expected">예상 피해: ${expectedMin}~${expectedMax}</span>`;
         document.getElementById('ui-power').innerText = `+${basePowerBonus}`; document.getElementById('ui-defense').innerText = `+${baseDefenseBonus}`;
         updatePlayerEffects();
         document.getElementById('ui-rolls').innerText = rollsLeft; document.getElementById('ui-max-rolls').innerText = baseMaxRolls;
