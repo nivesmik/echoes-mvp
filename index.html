@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ECHOES v2.17 — The Last Echo</title>
+    <title>ECHOES v2.19 — The Last Echo</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Noto+Sans+KR:wght@400;700&display=swap');
 
@@ -88,6 +88,7 @@
 
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 100; visibility: hidden; opacity: 0; transition: 0.3s; }
         .modal-overlay.active { visibility: visible; opacity: 1; }
+        #collection-modal, #record-modal { z-index: 310; }
         .modal-box { background: #1e1e1e; border: 2px solid #555; padding: 20px; border-radius: 10px; max-width: 400px; width: 90%; color: #eee; max-height: 85vh; overflow-y: auto; }
         .modal-title { font-size: 1.2rem; font-weight: bold; color: #d4af37; margin-bottom: 15px; border-bottom: 1px solid #444; padding-bottom: 10px; }
         .modal-close { background: #555; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; float: right; margin-bottom: 10px; }
@@ -155,7 +156,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 
         .build-version { color:#a79a7e; font-size:0.72rem; letter-spacing:1.6px; text-align:center; margin:2px 0 8px; }
 
-/* v2.17 combat alignment, feedback, status and sticky sorting */
+/* v2.19 combat alignment, feedback, status and sticky sorting */
 .battle-arena{grid-template-rows:auto 1fr;padding-top:12px;min-height:340px;align-items:stretch}
 .battle-arena .reward-preview{grid-column:1/-1;grid-row:1;z-index:3;justify-self:center;background:#201b14ed;border:1px solid #ad883d;border-radius:7px;padding:6px 16px;margin:0 0 6px;font-size:.82rem;color:#ffd57a}
 .battle-arena .entity-card{grid-row:2;display:grid;grid-template-rows:112px 34px minmax(46px,auto) 22px;align-items:end;justify-items:center;gap:4px;min-height:245px;align-content:end}
@@ -184,7 +185,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 @media(max-width:420px){.battle-arena{min-height:305px}.battle-arena .entity-card{grid-template-rows:90px 31px minmax(55px,auto) 20px;min-height:215px}.status-equip-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 
-/* v2.17: shared ground line, opposing characters, details below combatants */
+/* v2.19: shared ground line, opposing characters, details below combatants */
 .battle-arena{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:44px minmax(0,1fr);gap:0 10px;min-height:330px;padding:10px 12px 14px;align-items:stretch}
 .battle-arena .reward-preview{grid-row:1;align-self:start;margin:0;max-width:92%;box-sizing:border-box}
 .battle-arena .entity-card{grid-row:2;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:140px 28px minmax(48px,auto) 22px;gap:3px;align-content:end;justify-items:center;min-height:245px;padding:5px 8px 7px;background:rgba(11,14,22,.55);border-color:rgba(142,132,118,.45)}
@@ -202,7 +203,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 @media(max-width:420px){.battle-arena{min-height:292px;padding:8px 5px 10px;gap:0 5px;grid-template-rows:42px minmax(0,1fr)}.battle-arena .entity-card{grid-template-rows:105px 26px minmax(54px,auto) 20px;min-height:218px;padding:4px}.battle-arena .pixel-figure{height:105px;margin-right:0}.battle-arena .enemy-card .pixel-figure{margin-left:0}.battle-arena .pixel-sprite{height:104px;width:104px}}
 
     
-/* v2.17 — wide theatrical stage: actors at opposite edges, open center */
+/* v2.19 — wide theatrical stage: actors at opposite edges, open center */
 .battle-arena {
   grid-template-columns: minmax(0, 29%) minmax(0, 42%) minmax(0, 29%);
   grid-template-rows: 46px minmax(0,1fr);
@@ -257,7 +258,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 }
 
 
-/* v2.17 - status clarity, loot comparison, collections */
+/* v2.19 - status clarity, loot comparison, collections */
 .battle-arena .player-effects {grid-row:3;grid-column:1;align-self:center;width:100%;box-sizing:border-box;}
 .player-effects {font-size:.75rem; color:#b7d9f8; min-height:34px; text-align:center; display:flex; flex-wrap:wrap; gap:4px; justify-content:center; align-items:center; padding:3px;}
 .effect-chip {display:inline-block; border:1px solid #42637c; background:#14202d; border-radius:5px; padding:2px 5px;}
@@ -272,6 +273,8 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 .loot-equipment summary {color:#e5c36a;font-weight:bold;cursor:pointer;}
 .loot-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;margin-top:8px;}
 .loot-grid div {background:#24262b;padding:6px;border-radius:5px;font-size:.72rem;overflow-wrap:anywhere;}
+.loot-grid div.empty-equipment {background:#151618;border:1px dashed #444;color:#777;}
+.loot-grid div.empty-equipment strong,.loot-grid div.empty-equipment span {color:#777 !important;}
 .collection-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px;}
 .collection-item {border:1px solid #504633;background:#272218;border-radius:6px;padding:9px;font-size:.82rem;}
 .collection-item.unknown {border-style:dashed;border-color:#414141;background:#191919;color:#777;}
@@ -286,8 +289,9 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
     <div id="intro-screen">
         <div class="intro-title">ECHOES</div>
         <div class="intro-subtitle">Dice of the Dark</div>
-        <div class="build-version">TEST BUILD · v2.17</div>
-        <button class="intro-btn start" onclick="startGame()">▶ 게임 시작</button>
+        <div class="build-version">TEST BUILD · v2.19</div>
+        <button class="intro-btn start" onclick="startGame()">▶ 새 게임 시작</button>
+        <button class="intro-btn" id="continue-btn" onclick="continueGame()" style="display:none;border-color:#d4af37;color:#f4d77e">↪ 이어하기</button>
         <button class="intro-btn" onclick="showRecords()">🏆 기록 및 업적</button>
         <button class="intro-btn" onclick="showCollection()">📚 발견한 장비 도감</button>
     </div>
@@ -295,11 +299,11 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
     <div id="game-screen">
         <div class="top-buttons">
             <button class="btn-top" onclick="toggleStatus(true)">📊 상태창</button>
-            <button class="btn-top" onclick="toggleGuide(true)">❓ 도움말</button>
+            <button class="btn-top" onclick="toggleGuide(true)">❓ 도움말</button><button class="btn-top" onclick="saveAndReturnToTitle()">💾 저장하고 타이틀로</button>
         </div>
 
         <h1 class="game-title">ECHOES</h1>
-        <div class="build-version">TEST BUILD · v2.17</div>
+        <div class="build-version">TEST BUILD · v2.19</div>
         <div id="stage-display">STAGE 1</div>
 
         <div class="battle-arena">
@@ -434,6 +438,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
     }
 
     function startGame() {
+        clearRunSave();
         loadData();
         document.getElementById('intro-screen').style.opacity = '0';
         setTimeout(() => {
@@ -492,6 +497,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
     }
     function showRunEnding(victory) {
         if(runFinished) return;
+        clearRunSave();
         runFinished = true;
         isAnimating = true;
         updateButtonUI();
@@ -525,7 +531,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         document.getElementById('ending-modal').classList.add('active');
         saveData();
     }
-    function restartRun() { location.reload(); }
+    function restartRun() { clearRunSave(); location.reload(); }
 
     const EQUIP_DB = [
         { id: 'e_mw1', name: '낡은 검', desc: '위력+10', power: 10, type: 'equip', slot: 'main_weapon', price: 20 },
@@ -565,6 +571,77 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         { id: 'two_pair', name: '투 페어', basePower: 15, baseFocus: 2, level: 1, pUp: 5, fUp: 0 },
         { id: 'chance', name: '찬스', basePower: 0, baseFocus: 1, level: 1, pUp: 0, fUp: 0 }
     ];
+
+    // v2.19: 이어하기는 이 브라우저의 localStorage에만 저장됩니다.
+    const RUN_SAVE_KEY = 'echoesRun_v218';
+    let shopOffers = [];
+    let shopSold = [];
+    function readRunSave() {
+        try { const d = JSON.parse(localStorage.getItem(RUN_SAVE_KEY) || 'null'); return d && d.version === 1 && !d.finished ? d : null; }
+        catch(e) { console.warn('이어하기 저장을 읽지 못했습니다.',e); return null; }
+    }
+    function refreshContinueButton() {
+        const b=document.getElementById('continue-btn');
+        if(b) b.style.display=readRunSave() ? 'block' : 'none';
+    }
+    function clearRunSave() { try {localStorage.removeItem(RUN_SAVE_KEY);} catch(e){} refreshContinueButton(); }
+    function saveRun() {
+        if(runFinished || !document.getElementById('game-screen') || document.getElementById('game-screen').style.display==='none') return false;
+        // 공격/피격 애니메이션 중간 상태는 저장하지 않습니다. 직전 안전 지점을 유지합니다.
+        if(isAnimating) return false;
+        const modalIds=['shop-modal','trophy-modal','boss-reward-modal'];
+        const openModal=modalIds.find(id=>document.getElementById(id).classList.contains('active'));
+        // 보상 선택 중에는 이전 안전 지점을 유지합니다.
+        if(openModal && openModal!=='shop-modal') return false;
+        const snapshot={version:1,finished:false,stage:currentStage,enemyHp,playerHp,playerGold,
+          dice:[...dice],held:[...held],rollsLeft,isFirstRoll,currentTurn,playerPoison,boneShieldActive,
+          equipment:JSON.parse(JSON.stringify(equipment)),hands:POKER_HANDS.map(h=>({id:h.id,level:h.level,basePower:h.basePower,baseFocus:h.baseFocus})),
+          runStats:JSON.parse(JSON.stringify(runStats)),autoSortDice,
+          shop:openModal==='shop-modal',shopRerollCount,potionBoughtThisShop,
+          shopOffers:[...shopOffers],shopSold:[...shopSold],
+          savedAt:Date.now()};
+        try {localStorage.setItem(RUN_SAVE_KEY,JSON.stringify(snapshot));return true;}catch(e){console.warn('이어하기 저장 실패',e);return false;}
+    }
+    function saveAndReturnToTitle() {
+        if(runFinished) return;
+        if(isAnimating) {alert('전투 연출이 끝난 뒤 저장해 주세요.');return;}
+        if(['trophy-modal','boss-reward-modal'].some(id=>document.getElementById(id).classList.contains('active'))) {
+            alert('전리품 선택을 마친 뒤 저장해 주세요.');return;
+        }
+        if(!saveRun() || !readRunSave()) {alert('저장에 실패했습니다. 다시 시도해 주세요.');return;}
+        document.querySelectorAll('.modal-overlay.active').forEach(el=>el.classList.remove('active'));
+        document.getElementById('game-screen').style.display='none';
+        const intro=document.getElementById('intro-screen');
+        intro.style.transition='none';intro.style.opacity='1';intro.style.display='flex';
+        refreshContinueButton();
+    }
+    function continueGame() {
+        const d=readRunSave(); if(!d){refreshContinueButton();return alert('이어할 저장 기록이 없습니다.');}
+        document.querySelectorAll('.modal-overlay.active').forEach(el=>el.classList.remove('active'));
+        document.getElementById('intro-screen').style.display='none';
+        document.getElementById('game-screen').style.display='flex';
+        currentStage=d.stage;playerHp=d.playerHp;playerGold=d.playerGold;
+        equipment=d.equipment;runStats=d.runStats;autoSortDice=!!d.autoSortDice;
+        d.hands.forEach(saved=>{const h=POKER_HANDS.find(x=>x.id===saved.id);if(h) Object.assign(h,saved);});
+        setupStage();enemyHp=d.enemyHp;currentTurn=d.currentTurn;playerPoison=d.playerPoison;
+        boneShieldActive=d.boneShieldActive;dice=d.dice;held=d.held;
+        rollsLeft=d.rollsLeft;isFirstRoll=d.isFirstRoll;isAnimating=false;runFinished=false;
+        updateUI();renderDice();if(!isFirstRoll)evaluateHands();else document.getElementById('hands-container').innerHTML='';
+        updateButtonUI();
+        if(d.shop){
+            shopRerollCount=d.shopRerollCount||0;potionBoughtThisShop=!!d.potionBoughtThisShop;
+            shopOffers=d.shopOffers||[];shopSold=d.shopSold||[];
+            document.getElementById('shop-earned-gold').innerText='이어하기';
+            document.getElementById('shop-total-gold').innerText=playerGold;
+            updateShopInfoPanel();generateShopItems(true);refreshShopRerollButton();refreshUpgradePanel();
+            document.getElementById('shop-modal').classList.add('active');
+        }
+        saveRun();
+    }
+    document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')saveRun();});
+    window.addEventListener('pagehide',saveRun);
+    document.addEventListener('DOMContentLoaded',refreshContinueButton);
+    setInterval(saveRun,2000);
 
     function initGame() { setupStage(); updateUI(); renderDice(); updateButtonUI(); }
     
@@ -612,7 +689,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         return vals.join(' · ') || item.desc || '추가 능력 없음';
     }
     function equippedGridHTML(){
-        return `<div class="loot-grid">${Object.keys(SLOT_NAMES).map(k=>`<div><span style="color:#bcae8a">${SLOT_NAMES[k]}</span><br><strong>${equipment[k]?.name || '비어 있음'}</strong><br><span style="color:#8cbce4">${itemEffects(equipment[k])}</span></div>`).join('')}</div>`;
+        return `<div class="loot-grid">${Object.keys(SLOT_NAMES).map(k=>`<div class="${equipment[k] ? '' : 'empty-equipment'}"><span style="color:#bcae8a">${SLOT_NAMES[k]}</span><br><strong>${equipment[k]?.name || '비어 있음'}</strong>${equipment[k] ? `<br><span style="color:#8cbce4">${itemEffects(equipment[k])}</span>` : ''}</div>`).join('')}</div>`;
     }
     function lootEquipmentHTML(){return `<details class="loot-equipment" open><summary>🎒 내 장비 8칸 확인 / 접기</summary>${equippedGridHTML()}</details>`;}
     function updatePlayerEffects(){
@@ -744,7 +821,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         document.getElementById('recommendation-box').innerHTML = "주사위 굴리는 중...";
         
         updateUI(); 
-        setTimeout(() => { if(autoSortDice) sortDiceValues(); renderDice(); evaluateHands(); isAnimating = false; updateButtonUI(); }, 400);
+        setTimeout(() => { if(autoSortDice) sortDiceValues(); renderDice(); evaluateHands(); isAnimating = false; updateButtonUI(); saveRun(); }, 400);
     }
 
     function renderDice() {
@@ -936,6 +1013,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         isFirstRoll = true; held = [false,false,false,false,false]; rollsLeft = baseMaxRolls; isAnimating = false;
         renderDice(); updateUI(); updateButtonUI();
         document.getElementById('result-display').innerHTML = "";
+        saveRun();
     }
 
     function updateShopInfoPanel() {
@@ -968,13 +1046,16 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         btn.textContent=`🔄 상점 리롤 (${shopRerollCost()}G)`;
         btn.disabled=playerGold<shopRerollCost();
     }
-    function generateShopItems() {
+    function generateShopItems(restoring=false) {
         const c = document.getElementById('shop-items-container'); c.innerHTML = '';
-        let sEquips = shuffleArray(EQUIP_DB).slice(0, 3);
-        let sPlanet = shuffleArray(PLANET_DB)[0];
-        let sHeal = potionBoughtThisShop ? null : CONSUMABLE_DB[0];
-        
-        [...sEquips, sPlanet, ...(sHeal?[sHeal]:[])].forEach((item) => {
+        if(!restoring || !shopOffers.length){
+            const offers=[...shuffleArray(EQUIP_DB).slice(0,3),shuffleArray(PLANET_DB)[0],...(potionBoughtThisShop?[]:[CONSUMABLE_DB[0]])];
+            shopOffers=offers.map(item=>({type:item.type,id:item.id||item.name}));shopSold=offers.map(()=>false);
+        }
+        const allOffers=[...EQUIP_DB,...PLANET_DB,...CONSUMABLE_DB];
+        shopOffers.forEach((offer,index) => {
+            const item=allOffers.find(i=>i.type===offer.type && (i.id||i.name)===offer.id);
+            if(!item)return;
             let currentEquipText = ''; let slotText = item.slot ? `<span style="color:#4dabf7;">[${SLOT_NAMES[item.slot]}]</span> ` : '';
             if (item.type === 'equip' && equipment[item.slot]) {
                 let ce = equipment[item.slot]; let eff = [];
@@ -1000,9 +1081,10 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
                 } else if (item.type === 'heal') { playerHp = Math.min(PLAYER_MAX_HP, playerHp + item.heal); potionBoughtThisShop=true; }
                 
                 playerGold -= item.price; document.getElementById('shop-total-gold').innerText = playerGold;
-                btn.disabled = true; btn.innerText = "품절";
+                shopSold[index]=true;btn.disabled = true; btn.innerText = "품절";
                 updateUI(); updateShopInfoPanel(); refreshShopRerollButton(); refreshUpgradePanel();
             };
+            if(shopSold[index]){btn.disabled=true;btn.innerText="품절";}
             card.appendChild(btn); c.appendChild(card);
         });
     }
@@ -1047,11 +1129,11 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         document.getElementById('shop-earned-gold').innerText = `+${earn}G`;
         document.getElementById('shop-total-gold').innerText = playerGold;
         shopRerollCount=0; potionBoughtThisShop=false;
-        generateShopItems(); refreshShopRerollButton(); refreshUpgradePanel(); modal.classList.add('active');
+        generateShopItems(); refreshShopRerollButton(); refreshUpgradePanel(); modal.classList.add('active'); saveRun();
     }
 
-    function nextStage() { if(runFinished) return; document.getElementById('shop-modal').classList.remove('active'); if(currentStage >= FINAL_STAGE) { showRunEnding(true); return; } currentStage++; setupStage(); resetTurn(true); }
-    window.onbeforeunload = function() { saveData(); }
+    function nextStage() { if(runFinished) return; document.getElementById('shop-modal').classList.remove('active'); if(currentStage >= FINAL_STAGE) { showRunEnding(true); return; } currentStage++; setupStage(); resetTurn(true); saveRun(); }
+    window.onbeforeunload = function() { saveData(); saveRun(); }
 </script>
 </body>
 </html>
