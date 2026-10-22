@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ECHOES v2.11 — The Last Echo</title>
+    <title>ECHOES v2.13 — The Last Echo</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Noto+Sans+KR:wght@400;700&display=swap');
 
@@ -153,6 +153,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 #trophy-content{padding:12px!important}
 @media(max-width:420px){.battle-arena{padding-top:70px;min-height:205px}.pixel-figure{height:85px}.pixel-sprite{height:83px;width:90px}.battle-arena .entity-card{padding:6px 4px}.battle-arena .name{font-size:.74rem}.trophy-compare{gap:5px}.trophy-compare>div{padding:7px}}
 
+        .build-version { color:#a79a7e; font-size:0.72rem; letter-spacing:1.6px; text-align:center; margin:2px 0 8px; }
     </style>
 </head>
 <body>
@@ -160,6 +161,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
     <div id="intro-screen">
         <div class="intro-title">ECHOES</div>
         <div class="intro-subtitle">Dice of the Dark</div>
+        <div class="build-version">TEST BUILD · v2.13</div>
         <button class="intro-btn start" onclick="startGame()">▶ 게임 시작</button>
         <button class="intro-btn" onclick="showRecords()">🏆 기록 및 업적</button>
     </div>
@@ -171,6 +173,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         </div>
 
         <h1 class="game-title">ECHOES</h1>
+        <div class="build-version">TEST BUILD · v2.13</div>
         <div id="stage-display">STAGE 1</div>
 
         <div class="battle-arena">
@@ -526,11 +529,12 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 
         if (isAnimating) { btn.disabled = true; btn.innerText = "진행 중..."; } 
         else if (isFirstRoll) { btn.disabled = false; btn.className = ""; btn.innerText = "🎲 처음 굴리기"; } 
+        else if (held.every(Boolean)) { btn.disabled = true; btn.className = ""; btn.innerText = "🔒 모든 주사위 잠금 (아래에서 공격)"; }
         else if (rollsLeft > 0) { btn.disabled = false; btn.className = "reroll-state"; btn.innerText = `🔄 다시 굴리기 (남은 횟수: ${rollsLeft})`; } 
         else { btn.disabled = true; btn.className = ""; btn.innerText = "⛔ 리롤 불가 (아래에서 공격)"; }
     }
 
-    function toggleHold(i) { if (isFirstRoll || isAnimating) return; held[i] = !held[i]; renderDice(); }
+    function toggleHold(i) { if (isFirstRoll || isAnimating) return; held[i] = !held[i]; renderDice(); updateButtonUI(); }
 
     function sortDice() {
         if(isFirstRoll || isAnimating) return;
@@ -541,7 +545,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
     }
 
     function rollDice() {
-        if ((!isFirstRoll && rollsLeft <= 0) || isAnimating) return;
+        if ((!isFirstRoll && (rollsLeft <= 0 || held.every(Boolean))) || isAnimating) return;
         isAnimating = true; updateButtonUI();
         const diceElements = document.getElementById('dice-container').children;
         for (let i = 0; i < 5; i++) {
