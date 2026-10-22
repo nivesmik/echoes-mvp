@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ECHOES v2.14 — The Last Echo</title>
+    <title>ECHOES v2.15 — The Last Echo</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Noto+Sans+KR:wght@400;700&display=swap');
 
@@ -155,7 +155,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 
         .build-version { color:#a79a7e; font-size:0.72rem; letter-spacing:1.6px; text-align:center; margin:2px 0 8px; }
 
-/* v2.14 combat alignment, feedback, status and sticky sorting */
+/* v2.15 combat alignment, feedback, status and sticky sorting */
 .battle-arena{grid-template-rows:auto 1fr;padding-top:12px;min-height:340px;align-items:stretch}
 .battle-arena .reward-preview{grid-column:1/-1;grid-row:1;z-index:3;justify-self:center;background:#201b14ed;border:1px solid #ad883d;border-radius:7px;padding:6px 16px;margin:0 0 6px;font-size:.82rem;color:#ffd57a}
 .battle-arena .entity-card{grid-row:2;display:grid;grid-template-rows:112px 34px minmax(46px,auto) 22px;align-items:end;justify-items:center;gap:4px;min-height:245px;align-content:end}
@@ -183,6 +183,24 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 .sort-btn.sort-active{border-color:#e6bc52;color:#f3d27b;background:#3b3219;box-shadow:0 0 9px #cfa44344}
 @media(max-width:420px){.battle-arena{min-height:305px}.battle-arena .entity-card{grid-template-rows:90px 31px minmax(55px,auto) 20px;min-height:215px}.status-equip-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
+
+/* v2.15: shared ground line, opposing characters, details below combatants */
+.battle-arena{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:44px minmax(0,1fr);gap:0 10px;min-height:330px;padding:10px 12px 14px;align-items:stretch}
+.battle-arena .reward-preview{grid-row:1;align-self:start;margin:0;max-width:92%;box-sizing:border-box}
+.battle-arena .entity-card{grid-row:2;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:140px 28px minmax(48px,auto) 22px;gap:3px;align-content:end;justify-items:center;min-height:245px;padding:5px 8px 7px;background:rgba(11,14,22,.55);border-color:rgba(142,132,118,.45)}
+.battle-arena .player-card{grid-column:1}
+.battle-arena .enemy-card{grid-column:2}
+.battle-arena .pixel-figure{grid-row:1;align-self:end;justify-self:end;margin-right:6%;display:flex;align-items:end;justify-content:center;height:140px}
+.battle-arena .enemy-card .pixel-figure{justify-self:start;margin-left:6%;margin-right:0}
+.battle-arena .pixel-sprite{height:136px;width:136px;max-width:100%;object-fit:contain}
+.battle-arena .player-card .pixel-sprite{transform:scaleX(-1)}
+.battle-arena .enemy-card .pixel-sprite{transform:scaleX(-1)}
+.battle-arena .name{grid-row:2;align-self:center;min-height:0}
+.battle-arena .enemy-details,.battle-arena .player-details{grid-row:3;align-self:center;min-height:48px}
+.battle-arena .hp-bar-bg{grid-row:4;align-self:end;width:100%}
+.battle-arena::after{height:25px}
+@media(max-width:420px){.battle-arena{min-height:292px;padding:8px 5px 10px;gap:0 5px;grid-template-rows:42px minmax(0,1fr)}.battle-arena .entity-card{grid-template-rows:105px 26px minmax(54px,auto) 20px;min-height:218px;padding:4px}.battle-arena .pixel-figure{height:105px;margin-right:0}.battle-arena .enemy-card .pixel-figure{margin-left:0}.battle-arena .pixel-sprite{height:104px;width:104px}}
+
     </style>
 </head>
 <body>
@@ -190,7 +208,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
     <div id="intro-screen">
         <div class="intro-title">ECHOES</div>
         <div class="intro-subtitle">Dice of the Dark</div>
-        <div class="build-version">TEST BUILD · v2.14</div>
+        <div class="build-version">TEST BUILD · v2.15</div>
         <button class="intro-btn start" onclick="startGame()">▶ 게임 시작</button>
         <button class="intro-btn" onclick="showRecords()">🏆 기록 및 업적</button>
     </div>
@@ -202,7 +220,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         </div>
 
         <h1 class="game-title">ECHOES</h1>
-        <div class="build-version">TEST BUILD · v2.14</div>
+        <div class="build-version">TEST BUILD · v2.15</div>
         <div id="stage-display">STAGE 1</div>
 
         <div class="battle-arena">
