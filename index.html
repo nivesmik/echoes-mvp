@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ECHOES v2.23 — The Last Echo</title>
+    <title>ECHOES v2.25 — The Last Echo</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Noto+Sans+KR:wght@400;700&display=swap');
 
@@ -156,7 +156,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 
         .build-version { color:#a79a7e; font-size:0.72rem; letter-spacing:1.6px; text-align:center; margin:2px 0 8px; }
 
-/* v2.23 combat alignment, feedback, status and sticky sorting */
+/* v2.25 combat alignment, feedback, status and sticky sorting */
 .battle-arena{grid-template-rows:auto 1fr;padding-top:12px;min-height:340px;align-items:stretch}
 .battle-arena .reward-preview{grid-column:1/-1;grid-row:1;z-index:3;justify-self:center;background:#201b14ed;border:1px solid #ad883d;border-radius:7px;padding:6px 16px;margin:0 0 6px;font-size:.82rem;color:#ffd57a}
 .battle-arena .entity-card{grid-row:2;display:grid;grid-template-rows:112px 34px minmax(46px,auto) 22px;align-items:end;justify-items:center;gap:4px;min-height:245px;align-content:end}
@@ -185,7 +185,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 @media(max-width:420px){.battle-arena{min-height:305px}.battle-arena .entity-card{grid-template-rows:90px 31px minmax(55px,auto) 20px;min-height:215px}.status-equip-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 
-/* v2.23: shared ground line, opposing characters, details below combatants */
+/* v2.25: shared ground line, opposing characters, details below combatants */
 .battle-arena{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:44px minmax(0,1fr);gap:0 10px;min-height:330px;padding:10px 12px 14px;align-items:stretch}
 .battle-arena .reward-preview{grid-row:1;align-self:start;margin:0;max-width:92%;box-sizing:border-box}
 .battle-arena .entity-card{grid-row:2;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:140px 28px minmax(48px,auto) 22px;gap:3px;align-content:end;justify-items:center;min-height:245px;padding:5px 8px 7px;background:rgba(11,14,22,.55);border-color:rgba(142,132,118,.45)}
@@ -203,7 +203,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 @media(max-width:420px){.battle-arena{min-height:292px;padding:8px 5px 10px;gap:0 5px;grid-template-rows:42px minmax(0,1fr)}.battle-arena .entity-card{grid-template-rows:105px 26px minmax(54px,auto) 20px;min-height:218px;padding:4px}.battle-arena .pixel-figure{height:105px;margin-right:0}.battle-arena .enemy-card .pixel-figure{margin-left:0}.battle-arena .pixel-sprite{height:104px;width:104px}}
 
     
-/* v2.23 — wide theatrical stage: actors at opposite edges, open center */
+/* v2.25 — wide theatrical stage: actors at opposite edges, open center */
 .battle-arena {
   grid-template-columns: minmax(0, 29%) minmax(0, 42%) minmax(0, 29%);
   grid-template-rows: 46px minmax(0,1fr);
@@ -258,7 +258,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 }
 
 
-/* v2.23 - status clarity, loot comparison, collections */
+/* v2.25 - status clarity, loot comparison, collections */
 .battle-arena .player-effects {grid-row:3;grid-column:1;align-self:center;width:100%;box-sizing:border-box;}
 .player-effects {font-size:.75rem; color:#b7d9f8; min-height:34px; text-align:center; display:flex; flex-wrap:wrap; gap:4px; justify-content:center; align-items:center; padding:3px;}
 .effect-chip {display:inline-block; border:1px solid #42637c; background:#14202d; border-radius:5px; padding:2px 5px;}
@@ -291,7 +291,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 .status-hand-row.mastered{border-color:#e05b5b!important;background:rgba(178,32,38,.16)!important;box-shadow:inset 3px 0 #d94848}
 .equip-slot{cursor:default}
 
-/* v2.23: compact play layout, no overlapping header and fixed intent rows */
+/* v2.25: compact play layout, no overlapping header and fixed intent rows */
 .enemy-intent{display:block!important;width:100%;box-sizing:border-box;text-align:center;white-space:normal;overflow-wrap:normal!important;padding:4px 2px!important}
 .enemy-damage-line{display:block;white-space:nowrap;font-size:clamp(10px,1.3vw,13px)}
 .enemy-damage-line.expected{color:#7ae28a;margin-top:3px}
@@ -333,6 +333,125 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
  .dashboard{margin-bottom:5px;padding:7px}
 }
 @media(max-width:390px){.top-buttons .btn-top{font-size:.68rem;padding:6px 5px}.enemy-damage-line{font-size:10px}}
+
+/* v2.25: phase-oriented landscape interface. All three phases use one viewport. */
+#trophy-modal,#boss-reward-modal,#shop-modal {padding:12px;box-sizing:border-box;align-items:center;justify-content:center;}
+#trophy-modal .modal-box,#boss-reward-modal .modal-box,#shop-modal .modal-box {
+ box-sizing:border-box;width:min(1180px,98vw);max-width:1180px;
+ height:min(780px,calc(100dvh - 24px));max-height:calc(100dvh - 24px);
+ padding:14px 18px;overflow:hidden;display:grid;gap:9px;align-content:start;
+ grid-template-rows:auto minmax(0,1fr);
+}
+#trophy-modal .modal-title,#boss-reward-modal .modal-title,#shop-modal .modal-title{margin:0!important;padding:0 0 7px;font-size:1.08rem;}
+/* Loot: new item on left, equipment comparison on right, decisions at bottom */
+#trophy-modal .modal-box{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;}
+#trophy-modal .modal-title{grid-column:1/-1;}
+#trophy-content{grid-column:1;grid-row:2;overflow:auto;min-width:0;margin:0!important;align-self:stretch;}
+#trophy-equipped-reference{grid-column:2;grid-row:2;overflow:auto;min-height:0;min-width:0;}
+#trophy-modal .modal-box>div:last-child{grid-column:1/-1;grid-row:3;}
+/* Boss: reward options and equipment reference in side-by-side panels */
+#boss-reward-modal .modal-box{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr);}
+#boss-reward-modal .modal-title,#boss-reward-modal .modal-box>p{grid-column:1/-1;margin:0!important;}
+#boss-reward-container{grid-column:1;grid-row:3;min-height:0;overflow:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;align-content:start;}
+#boss-reward-container .reward-card{display:flex;flex-direction:column;align-items:stretch;gap:8px;margin:0;min-width:0;overflow-wrap:anywhere;}
+#boss-reward-container .shop-buy-btn{margin-top:auto;}
+#boss-equipped-reference{grid-column:2;grid-row:3;min-height:0;overflow:auto;}
+/* Shop: item choices occupy center, status and upgrade tools occupy sidebar. */
+#shop-modal .modal-box{grid-template-columns:minmax(0,1.7fr) minmax(265px,.9fr);grid-template-rows:auto auto minmax(0,1fr) auto;}
+#shop-modal .modal-title,#shop-modal .modal-title+div{grid-column:1/-1;margin:0!important;}
+#shop-items-container{grid-column:1;grid-row:3;min-height:0;overflow:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-content:start;padding-right:4px;}
+#shop-items-container .reward-card{margin:0;min-width:0;gap:6px;overflow-wrap:anywhere;}
+#shop-modal .shop-info-panel{grid-column:2;grid-row:3;min-height:0;overflow:auto;margin:0!important;padding:8px;}
+#shop-modal .upgrade-card{grid-column:2;grid-row:4;margin:0!important;max-height:165px;overflow:auto;}
+#shop-modal .modal-box>button:last-child{grid-column:1;grid-row:4;margin:0!important;align-self:end;min-height:48px;}
+#shop-modal .modal-box>.upgrade-card{position:relative;}
+#shop-modal .shop-info-panel #shop-my-equips{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+@media(min-width:900px) and (min-height:620px){
+ body:has(#game-screen[style*="flex"]),body:has(#game-screen[style*="grid"]){overflow-x:hidden;}
+ #game-screen{max-width:1320px!important;}
+ #game-screen>.battle-arena{min-height:245px!important;}
+ #game-screen>.battle-arena .entity-card{min-height:190px!important;}
+ #game-screen>.battle-arena .pixel-figure{height:100px!important;}
+ #game-screen>.battle-arena .pixel-sprite{height:100px!important;width:100px!important;}
+ #game-screen>.battle-arena .entity-card{grid-template-rows:100px 24px minmax(48px,auto) 20px!important;}
+ #game-screen>.dice-container{grid-row:10;}
+ #game-screen>.hands-container{grid-row:11;}
+}
+@media(max-width:720px){
+ #trophy-modal,#boss-reward-modal,#shop-modal{padding:5px;}
+ #trophy-modal .modal-box,#boss-reward-modal .modal-box,#shop-modal .modal-box{width:99vw;height:calc(100dvh - 10px);max-height:calc(100dvh - 10px);padding:9px;gap:6px;}
+ #trophy-modal .modal-box{grid-template-columns:1fr 1fr;}
+ #boss-reward-modal .modal-box{grid-template-columns:1fr;grid-template-rows:auto auto minmax(0,1.3fr) minmax(0,1fr);}
+ #boss-reward-container{grid-column:1;grid-row:3;grid-template-columns:repeat(3,minmax(0,1fr));}
+ #boss-equipped-reference{grid-column:1;grid-row:4;}
+ #shop-modal .modal-box{grid-template-columns:1fr;grid-template-rows:auto auto minmax(0,1fr) auto auto auto;}
+ #shop-items-container{grid-column:1;grid-row:3;grid-template-columns:repeat(2,minmax(0,1fr));}
+ #shop-modal .shop-info-panel{grid-column:1;grid-row:4;max-height:94px;overflow:auto;}
+ #shop-modal .upgrade-card{grid-column:1;grid-row:5;max-height:120px;}
+ #shop-modal .modal-box>button:last-child{grid-column:1;grid-row:6;}
+ #shop-modal .reward-card{padding:7px;font-size:.8rem;}
+}
+@media(max-height:580px) and (min-width:721px){
+ #trophy-modal .modal-box,#boss-reward-modal .modal-box,#shop-modal .modal-box{height:calc(100dvh - 10px);max-height:calc(100dvh - 10px);padding:8px 12px;}
+ #shop-modal .upgrade-card{max-height:120px;}
+}
+
+
+/* v2.25: actual three-column battle UI (equipment / battle / dice) */
+#game-screen{max-width:1450px!important;width:min(98vw,1450px)!important;display:block!important;margin-inline:auto!important;}
+#game-screen>.top-buttons,#game-screen>.game-title,#game-screen>.build-version,#game-screen>#stage-display{display:flex;justify-content:center;margin:3px auto!important;}
+#game-screen>.game-title{display:block;text-align:center;font-size:clamp(1.45rem,2.3vw,2.2rem);}
+#game-screen>.combat-layout{display:grid!important;grid-template-columns:minmax(0,2fr) minmax(0,6fr) minmax(0,2fr);gap:10px;align-items:stretch;margin:10px auto 0;min-height:0;}
+#game-screen>.combat-layout.ratio-343{grid-template-columns:minmax(0,3fr) minmax(0,4fr) minmax(0,3fr);}
+.combat-sidebar{background:rgba(19,24,35,.92);border:1px solid #655338;border-radius:10px;padding:9px;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:7px;}
+.combat-center{min-width:0;display:flex;flex-direction:column;justify-content:center;}
+.combat-center .battle-arena{width:100%!important;box-sizing:border-box;min-height:330px!important;margin:0!important;grid-template-columns:minmax(0,38%) minmax(0,24%) minmax(0,38%)!important;}
+.combat-center .battle-arena .entity-card{min-height:230px!important;}
+.combat-center .battle-arena .pixel-figure{height:115px!important;}
+.combat-center .battle-arena .pixel-sprite{height:115px!important;width:115px!important;}
+.combat-center .battle-arena .entity-card{grid-template-rows:115px 26px minmax(60px,auto) 20px!important;}
+.combat-sidebar .inventory-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:5px!important;width:100%!important;margin:0!important;}
+.combat-sidebar .equip-slot{min-width:0;min-height:49px;padding:5px 2px!important;overflow-wrap:anywhere;}
+.combat-sidebar .item-name{font-size:clamp(.59rem,.85vw,.78rem)!important;}
+.combat-sidebar .inventory-hint{font-size:.67rem!important;margin:0!important;line-height:1.35;}
+.combat-sidebar .equipment-controls{display:flex;flex-direction:column;gap:4px;align-items:stretch;margin:0!important;font-size:.72rem;}
+.combat-sidebar .equipment-controls button{padding:5px!important;font-size:.7rem;}
+.combat-panel[hidden]{display:none!important;}
+.combat-tab-switch{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+.combat-tab-switch button,.combat-ratio-switch button{border:1px solid #655c4c;background:#272a32;color:#ccc;padding:6px 2px;border-radius:5px;cursor:pointer;font-size:.74rem;}
+.combat-tab-switch button.selected,.combat-ratio-switch button.selected{background:#64502d;border-color:#d4af37;color:#fff0b5;}
+.combat-panel-caption{color:#cbb68d;font-size:.69rem;line-height:1.35;margin:3px 0 8px;}
+#combat-hand-levels{display:grid;grid-template-columns:1fr;gap:5px;}
+.combat-hand-level{display:flex;align-items:center;justify-content:space-between;gap:3px;background:#22252d;border:1px solid #444;border-radius:5px;padding:7px 5px;font-size:.74rem;}
+.combat-hand-level strong{white-space:nowrap;}
+.tier-white{color:#f5f5f5!important;}
+.tier-yellow{color:#f7d77a!important;}
+.tier-orange{color:#ffa55c!important;}
+.tier-red{color:#ff7474!important;}
+.combat-hand-level.tier-yellow{border-color:#988045;}
+.combat-hand-level.tier-orange{border-color:#bb7134;background:#30251f;}
+.combat-hand-level.tier-red{border-color:#ce4e4e;background:#352125;}
+.hand-row.tier-yellow strong{color:#f7d77a!important;}
+.hand-row.tier-orange strong{color:#ffa55c!important;}
+.hand-row.tier-red strong{color:#ff7474!important;}
+.status-hand-row.upgraded{border-color:#a48a47!important;}
+.status-hand-row.powerful{border-color:#d58139!important;}
+.status-hand-row.mastered{border-color:#e05b5b!important;}
+.combat-sidebar-right .dashboard{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;padding:6px;margin:0!important;font-size:.75rem;}
+.combat-sidebar-right .dice-container{display:flex;justify-content:center;flex-wrap:wrap;gap:4px;width:100%;margin:4px 0!important;}
+.combat-sidebar-right .die{width:clamp(25px,2.8vw,42px)!important;height:clamp(25px,2.8vw,42px)!important;margin:0!important;flex-shrink:0;}
+.combat-sidebar-right .recommendation-box{margin:0!important;padding:6px!important;font-size:.7rem!important;}
+.combat-sidebar-right #roll-btn{width:100%;margin:0!important;padding:9px 4px!important;font-size:.78rem!important;}
+.combat-sidebar-right #result-display{margin:0!important;min-height:18px;font-size:.78rem;}
+.combat-sidebar-right .hands-container{display:flex!important;flex-direction:column!important;gap:4px!important;min-height:0;}
+.combat-sidebar-right .hand-row{display:flex!important;flex-wrap:wrap;gap:5px;padding:5px!important;font-size:.7rem!important;}
+.combat-sidebar-right .hand-row .play-btn{padding:5px 8px!important;font-size:.7rem!important;}
+.combat-sidebar-right .hand-row span{font-size:.68rem!important;}
+.combat-ratio-switch{display:flex;gap:5px;justify-content:center;margin:6px auto;}
+@media(min-width:900px) and (min-height:650px){#game-screen>.combat-layout{min-height:360px;}}
+@media(max-width:1000px){#game-screen>.combat-layout{grid-template-columns:minmax(0,2.5fr) minmax(0,5fr) minmax(0,2.5fr);gap:5px;}.combat-sidebar{padding:5px;}.combat-center .battle-arena{min-height:285px!important;}.combat-center .battle-arena .pixel-figure,.combat-center .battle-arena .pixel-sprite{height:90px!important;width:90px!important;}.combat-center .battle-arena .entity-card{grid-template-rows:90px 26px minmax(62px,auto) 20px!important;}}
+@media(max-width:700px){#game-screen>.combat-layout,#game-screen>.combat-layout.ratio-343{grid-template-columns:minmax(0,1fr)!important;}.combat-center{order:1}.combat-sidebar-right{order:2}.combat-sidebar-left{order:3}.combat-sidebar .inventory-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;}.combat-center .battle-arena{min-height:260px!important;}.combat-sidebar-right .die{width:44px!important;height:44px!important;}}
+
 </style>
 </head>
 <body>
@@ -340,7 +459,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
     <div id="intro-screen">
         <div class="intro-title">ECHOES</div>
         <div class="intro-subtitle">Dice of the Dark</div>
-        <div class="build-version">TEST BUILD · v2.23</div>
+        <div class="build-version">TEST BUILD · v2.25</div>
         <button class="intro-btn start" onclick="startGame()">▶ 새 게임 시작</button>
         <button class="intro-btn" id="continue-btn" onclick="continueGame()" style="display:none;border-color:#d4af37;color:#f4d77e">↪ 이어하기</button>
         <button class="intro-btn" onclick="showRecords()">🏆 기록 및 업적</button>
@@ -356,10 +475,37 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         </div>
 
         <h1 class="game-title">ECHOES</h1>
-        <div class="build-version">TEST BUILD · v2.23</div>
+        <div class="build-version">TEST BUILD · v2.25</div>
         <div id="stage-display">STAGE 1</div>
 
-        <div class="battle-arena">
+        <div class="combat-ratio-switch" role="group" aria-label="전투 화면 비율"><button type="button" data-combat-ratio="262" class="selected" onclick="setCombatRatio('262')">2 : 6 : 2</button><button type="button" data-combat-ratio="343" onclick="setCombatRatio('343')">3 : 4 : 3</button></div>
+    <div class="combat-layout" id="combat-layout">
+      <aside class="combat-sidebar combat-sidebar-left">
+        <div class="combat-tab-switch" role="group" aria-label="왼쪽 정보 패널">
+          <button id="combat-tab-equipment" type="button" class="selected" onclick="switchCombatPanel('equipment')">🎒 장비</button>
+          <button id="combat-tab-hands" type="button" onclick="switchCombatPanel('hands')">📖 족보</button>
+        </div>
+        <div id="combat-equipment-panel" class="combat-panel">
+<div class="inventory-hint" role="note">💡 장비 상세 정보는 아래 버튼으로 한 번에 펼치거나 숨길 수 있습니다.</div>
+        <div class="equipment-controls"><span>🎒 장비 능력치</span><button type="button" id="equipment-details-btn" onclick="toggleEquipmentDetails()" aria-pressed="false">상세 정보 보기</button></div>
+        <div class="inventory-grid" id="inventory-grid">
+            <div class="equip-slot" id="slot-helmet"><div class="slot-name">투구</div><div class="item-name">-</div></div>
+            <div class="equip-slot" id="slot-main_weapon"><div class="slot-name">주무기</div><div class="item-name">-</div></div>
+            <div class="equip-slot" id="slot-offhand"><div class="slot-name">보조무기</div><div class="item-name">-</div></div>
+            <div class="equip-slot" id="slot-armor"><div class="slot-name">방어구</div><div class="item-name">-</div></div>
+            <div class="equip-slot" id="slot-shoes"><div class="slot-name">신발</div><div class="item-name">-</div></div>
+            <div class="equip-slot" id="slot-relic"><div class="slot-name">유물</div><div class="item-name">-</div></div>
+            <div class="equip-slot" id="slot-accessory"><div class="slot-name">장신구</div><div class="item-name">-</div></div>
+            <div class="equip-slot" id="slot-trophy"><div class="slot-name">전리품</div><div class="item-name">-</div></div>
+        </div>
+        </div>
+        <div id="combat-hands-panel" class="combat-panel" hidden>
+          <div class="combat-panel-caption">강화한 족보 · 색상은 레벨에 따라 변화</div>
+          <div id="combat-hand-levels"></div>
+        </div>
+      </aside>
+      <main class="combat-center">
+<div class="battle-arena">
             <div class="reward-preview" id="reward-preview">💰 이번 턴 처치 보상: 20G</div>
             <div class="entity-card enemy-card" id="enemy-card">
                 <div class="flash-overlay" id="enemy-flash"></div>
@@ -378,36 +524,23 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
                 <div class="hp-bar-bg"><div class="hp-bar-fill" id="player-hp-fill"></div><div class="hp-text" id="player-hp-text">100 / 100</div></div>
             </div>
         </div>
-
-        <div class="dashboard">
+      </main>
+      <aside class="combat-sidebar combat-sidebar-right">
+<div class="dashboard">
             <div>💰<span id="ui-gold" style="color:#ffd700;">0</span></div>
             <div>⚔️<span id="ui-power" style="color:#4dabf7;">+0</span></div>
             <div>🛡️<span id="ui-defense" style="color:#2b8a3e;">+0</span></div>
             <div>🔄<span style="color:#fa5252;"><span id="ui-rolls">2</span>/<span id="ui-max-rolls">2</span></span></div>
         </div>
-
-        <div class="inventory-hint" role="note">💡 장비 상세 정보는 아래 버튼으로 한 번에 펼치거나 숨길 수 있습니다.</div>
-        <div class="equipment-controls"><span>🎒 장비 능력치</span><button type="button" id="equipment-details-btn" onclick="toggleEquipmentDetails()" aria-pressed="false">상세 정보 보기</button></div>
-        <div class="inventory-grid" id="inventory-grid">
-            <div class="equip-slot" id="slot-helmet"><div class="slot-name">투구</div><div class="item-name">-</div></div>
-            <div class="equip-slot" id="slot-main_weapon"><div class="slot-name">주무기</div><div class="item-name">-</div></div>
-            <div class="equip-slot" id="slot-offhand"><div class="slot-name">보조무기</div><div class="item-name">-</div></div>
-            <div class="equip-slot" id="slot-armor"><div class="slot-name">방어구</div><div class="item-name">-</div></div>
-            <div class="equip-slot" id="slot-shoes"><div class="slot-name">신발</div><div class="item-name">-</div></div>
-            <div class="equip-slot" id="slot-relic"><div class="slot-name">유물</div><div class="item-name">-</div></div>
-            <div class="equip-slot" id="slot-accessory"><div class="slot-name">장신구</div><div class="item-name">-</div></div>
-            <div class="equip-slot" id="slot-trophy"><div class="slot-name">전리품</div><div class="item-name">-</div></div>
-        </div>
-
-        <div class="dice-container" id="dice-container"></div>
-        <div style="text-align:center;">
-            <button id="sort-btn" class="sort-btn" onclick="sortDice()">🔢 눈금 오름차순 정렬</button>
-        </div>
+<div class="dice-container" id="dice-container"></div>
+        
 
         <div class="recommendation-box" id="recommendation-box">💡 첫 주사위를 굴려 전투를 시작하세요!</div>
         <button id="roll-btn" onclick="rollDice()">🎲 처음 굴리기</button>
         <div id="result-display"></div>
         <div class="hands-container" id="hands-container"></div>
+      </aside>
+    </div>
     </div>
 
     <!-- v2.11: complete run conclusion -->
@@ -627,7 +760,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         { id: 'chance', name: '찬스', basePower: 0, baseFocus: 1, level: 1, pUp: 0, fUp: 0 }
     ];
 
-    // v2.23: 이어하기는 이 브라우저의 localStorage에만 저장됩니다.
+    // v2.25: 이어하기는 이 브라우저의 localStorage에만 저장됩니다.
     const RUN_SAVE_KEY = 'echoesRun_v218';
     let shopOffers = [];
     let shopSold = [];
@@ -676,7 +809,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         document.getElementById('intro-screen').style.display='none';
         document.getElementById('game-screen').style.display='flex';
         currentStage=d.stage;playerHp=d.playerHp;playerGold=d.playerGold;
-        equipment=d.equipment;runStats=d.runStats;autoSortDice=!!d.autoSortDice;
+        equipment=d.equipment;runStats=d.runStats;autoSortDice=true;
         d.hands.forEach(saved=>{const h=POKER_HANDS.find(x=>x.id===saved.id);if(h) Object.assign(h,saved);});
         setupStage();enemyHp=Math.max(0,Math.min(enemyMaxHp,Number.isFinite(Number(d.enemyHp))?Number(d.enemyHp):enemyMaxHp));currentTurn=d.currentTurn;playerPoison=d.playerPoison;
         boneShieldActive=d.boneShieldActive;dice=d.dice;held=d.held;
@@ -793,9 +926,9 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
             });
             h += `</div>`;
 
-            h += `<div style="color:#4cd137; font-weight:bold; margin-top:15px; margin-bottom:8px;">📖 족보 레벨</div><div style="color:#a9a3a0;font-size:.73rem;margin-bottom:8px">피해량 = 위력 × 집중 (장비 위력 보너스는 실제 공격 시 추가) · Lv.3 주황 / Lv.5 붉은색</div>`;
+            h += `<div style="color:#4cd137; font-weight:bold; margin-top:15px; margin-bottom:8px;">📖 족보 레벨</div><div style="color:#a9a3a0;font-size:.73rem;margin-bottom:8px">피해량 = 위력 × 집중 (장비 위력 보너스는 실제 공격 시 추가) · Lv.1 흰색 · Lv.2~3 노란색 · Lv.4~5 주황색 · Lv.6+ 빨간색</div>`;
             POKER_HANDS.forEach(ph => {
-                h += `<div class="status-hand-row ${ph.level>=5?'mastered':ph.level>=3?'powerful':ph.level>1?'upgraded':''}"><div style="display:flex;justify-content:space-between;gap:5px"><strong style="color:${ph.level>=5?'#ff7474':ph.level>=3?'#ffa55c':ph.level>1?'#f7d77a':'#ddd'}">${ph.level>1?'✨ ':''}${ph.name} (Lv.${ph.level})</strong><span>위력 ${ph.basePower} × 집중 ${ph.baseFocus} = ${ph.basePower * ph.baseFocus}</span></div><span class="howto">🎲 ${HAND_RULES[ph.id]}</span></div>`;
+                h += `<div class="status-hand-row ${ph.level>=6?'mastered':ph.level>=4?'powerful':ph.level>=2?'upgraded':''}"><div style="display:flex;justify-content:space-between;gap:5px"><strong style="color:${ph.level>=6?'#ff7474':ph.level>=4?'#ffa55c':ph.level>=2?'#f7d77a':'#f5f5f5'}">${ph.level>1?'✨ ':''}${ph.name} (Lv.${ph.level})</strong><span>위력 ${ph.basePower} × 집중 ${ph.baseFocus} = ${ph.basePower * ph.baseFocus}</span></div><span class="howto">🎲 ${HAND_RULES[ph.id]}</span></div>`;
             });
             document.getElementById('status-content').innerHTML = h;
         }
@@ -810,6 +943,44 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         b.setAttribute('aria-pressed',String(equipmentDetailsVisible));
     }
 
+    // v2.25: battle sidebar tabs, always read the live equipment and hand levels.
+    let combatPanel = 'equipment';
+    function switchCombatPanel(panel) {
+        combatPanel = panel === 'hands' ? 'hands' : 'equipment';
+        const eq = document.getElementById('combat-equipment-panel');
+        const hands = document.getElementById('combat-hands-panel');
+        if (!eq || !hands) return;
+        eq.hidden = combatPanel !== 'equipment';
+        hands.hidden = combatPanel !== 'hands';
+        document.getElementById('combat-tab-equipment').classList.toggle('selected', combatPanel === 'equipment');
+        document.getElementById('combat-tab-hands').classList.toggle('selected', combatPanel === 'hands');
+        if (combatPanel === 'hands') refreshCombatHandLevels();
+    }
+    function combatHandTier(level) {
+        return level >= 6 ? 'tier-red' : level >= 4 ? 'tier-orange' : level >= 2 ? 'tier-yellow' : 'tier-white';
+    }
+    function refreshCombatHandLevels() {
+        const container = document.getElementById('combat-hand-levels');
+        if (!container || typeof POKER_HANDS === 'undefined') return;
+        container.innerHTML = '';
+        POKER_HANDS.forEach(hand => {
+            const line = document.createElement('div');
+            line.className = 'combat-hand-level ' + combatHandTier(hand.level);
+            const title = document.createElement('span');
+            title.textContent = hand.name;
+            const level = document.createElement('strong');
+            level.textContent = 'Lv.' + hand.level;
+            line.append(title, level);
+            container.appendChild(line);
+        });
+    }
+    function setCombatRatio(ratio) {
+        const layout = document.getElementById('combat-layout');
+        if (!layout) return;
+        layout.classList.toggle('ratio-343', ratio === '343');
+        document.querySelectorAll('[data-combat-ratio]').forEach(btn => btn.classList.toggle('selected',btn.dataset.combatRatio === ratio));
+        try { localStorage.setItem('echoes_combat_ratio',ratio); } catch(e) {}
+    }
     function updateUI() {
         if(enemyObj && Number.isFinite(enemyMaxHp)) enemyHp=Math.max(0,Math.min(enemyMaxHp,Number(enemyHp)||0));
         document.getElementById('enemy-hp-fill').style.width = Math.max(0, (enemyHp / enemyMaxHp) * 100) + '%';
@@ -837,6 +1008,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         document.getElementById('enemy-intent').innerHTML = `<span class="enemy-damage-line">⚔️ 공격: ${enemyObj.minD}~${enemyObj.maxD}</span><span class="enemy-damage-line expected">예상 피해: ${expectedMin}~${expectedMax}</span>`;
         document.getElementById('ui-power').innerText = `+${basePowerBonus}`; document.getElementById('ui-defense').innerText = `+${baseDefenseBonus}`;
         updatePlayerEffects();
+        refreshCombatHandLevels();
         document.getElementById('ui-rolls').innerText = rollsLeft; document.getElementById('ui-max-rolls').innerText = baseMaxRolls;
     }
 
@@ -844,7 +1016,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         const btn = document.getElementById('roll-btn');
         const sortBtn = document.getElementById('sort-btn');
         
-        sortBtn.disabled = isAnimating;
+        if(sortBtn) sortBtn.disabled = isAnimating;
         refreshSortButton();
 
         if (isAnimating) { btn.disabled = true; btn.innerText = "진행 중..."; } 
@@ -856,7 +1028,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 
     function toggleHold(i) { if (isFirstRoll || isAnimating) return; held[i] = !held[i]; renderDice(); updateButtonUI(); }
 
-    let autoSortDice = false;
+    let autoSortDice = true;
     function sortDiceValues() {
         let combined = dice.map((v, i) => ({val:v, locked:held[i]}));
         combined.sort((a,b) => a.val-b.val);
@@ -864,11 +1036,12 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
     }
     function refreshSortButton() {
         const b = document.getElementById('sort-btn');
+        if (!b) return;
         b.classList.toggle('sort-active',autoSortDice);
         b.innerText = autoSortDice ? '✓ 눈금 자동 정렬 ON' : '🔢 눈금 자동 정렬 OFF';
     }
     function sortDice() {
-        autoSortDice = !autoSortDice;
+        autoSortDice = true;
         if(autoSortDice && !isFirstRoll && !isAnimating) {sortDiceValues();renderDice();}
         refreshSortButton();
     }
@@ -919,7 +1092,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
             if(!valid[h.id]) return;
             const baseP = h.id === 'chance' ? sum : h.basePower;
             const totP = baseP + basePowerBonus;
-            const div = document.createElement('div'); div.className = `hand-row valid`;
+            const div = document.createElement('div'); div.className = `hand-row valid ${combatHandTier(h.level)}`;
             div.innerHTML = `<div><strong style="display:block;">${h.name} <small>(Lv.${h.level})</small></strong> <span style="color:#aaa;font-size:0.75rem;">(기본 ${baseP} <span style="color:#4dabf7;">+장비 ${basePowerBonus}</span>) × 집중 ${h.baseFocus}</span></div><button class="play-btn" onclick="playerAttack('${h.name}', ${totP * h.baseFocus})">공격! (${totP * h.baseFocus})</button>`;
             c.appendChild(div);
         });
@@ -1215,6 +1388,13 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 
     function nextStage() { if(runFinished) return; document.getElementById('shop-modal').classList.remove('active'); if(currentStage >= FINAL_STAGE) { showRunEnding(true); return; } currentStage++; setupStage(); resetTurn(true); saveRun(); }
     window.onbeforeunload = function() { saveData(); saveRun(); }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      switchCombatPanel('equipment');
+      let ratio = '262';
+      try { ratio = localStorage.getItem('echoes_combat_ratio') === '343' ? '343' : '262'; } catch(e) {}
+      setCombatRatio(ratio);
+    });
 </script>
 </body>
 </html>
