@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ECHOES v2.13 — The Last Echo</title>
+    <title>ECHOES v2.14 — The Last Echo</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Noto+Sans+KR:wght@400;700&display=swap');
 
@@ -154,6 +154,35 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 @media(max-width:420px){.battle-arena{padding-top:70px;min-height:205px}.pixel-figure{height:85px}.pixel-sprite{height:83px;width:90px}.battle-arena .entity-card{padding:6px 4px}.battle-arena .name{font-size:.74rem}.trophy-compare{gap:5px}.trophy-compare>div{padding:7px}}
 
         .build-version { color:#a79a7e; font-size:0.72rem; letter-spacing:1.6px; text-align:center; margin:2px 0 8px; }
+
+/* v2.14 combat alignment, feedback, status and sticky sorting */
+.battle-arena{grid-template-rows:auto 1fr;padding-top:12px;min-height:340px;align-items:stretch}
+.battle-arena .reward-preview{grid-column:1/-1;grid-row:1;z-index:3;justify-self:center;background:#201b14ed;border:1px solid #ad883d;border-radius:7px;padding:6px 16px;margin:0 0 6px;font-size:.82rem;color:#ffd57a}
+.battle-arena .entity-card{grid-row:2;display:grid;grid-template-rows:112px 34px minmax(46px,auto) 22px;align-items:end;justify-items:center;gap:4px;min-height:245px;align-content:end}
+.battle-arena .player-card{grid-column:1}
+.battle-arena .enemy-card{grid-column:2}
+.battle-arena .pixel-figure{grid-row:1;align-self:end}
+.battle-arena .name{grid-row:2;min-height:0}
+.battle-arena .hp-bar-bg{grid-row:4;width:100%;align-self:end;margin:0}
+.enemy-details{grid-row:3;align-self:center;display:flex;flex-direction:column;justify-content:center;gap:2px;width:100%;min-width:0}
+.player-details{grid-row:3;min-height:1px}
+.battle-arena .enemy-intent,.battle-arena .enemy-trait{margin:0;font-size:.69rem}
+.battle-arena .flash-overlay{grid-row:1/-1}
+@keyframes impact-wobble{0%{transform:translateX(0)}20%{transform:translateX(-8px)}45%{transform:translateX(7px)}70%{transform:translateX(-4px)}100%{transform:translateX(0)}}
+.battle-arena .entity-card.hit-shake{animation:impact-wobble .38s ease-out}
+.damage-float{position:absolute;z-index:15;top:20%;left:50%;transform:translateX(-50%);pointer-events:none;font-size:1.55rem;font-weight:900;color:#ffdf7e;text-shadow:2px 2px #000,0 0 12px #ee653f;white-space:nowrap;animation:damage-rise .95s ease-out forwards}
+.damage-float.incoming{color:#ff8585;text-shadow:2px 2px #000,0 0 12px #f44}
+.damage-float.blocked{color:#a3d7f3;font-size:1rem}
+@keyframes damage-rise{0%{opacity:0;transform:translate(-50%,10px) scale(.65)}18%{opacity:1;transform:translate(-50%,-6px) scale(1.2)}100%{opacity:0;transform:translate(-50%,-46px) scale(1)}}
+.status-equip-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:8px 0 15px}
+.status-equip-cell{border:1px dashed #5d5b54;border-radius:7px;background:#171a1f;padding:8px 5px;min-height:66px;min-width:0;overflow-wrap:anywhere}
+.status-equip-cell.filled{border:1px solid #bc973f;background:#2a261a}
+.status-equip-slot{font-size:.69rem;color:#9b9b9b;margin-bottom:5px}
+.status-equip-name{font-size:.76rem;font-weight:700;color:#f4e2ac}
+.status-equip-stats{font-size:.67rem;color:#b5d4ea;margin-top:4px}
+.sort-btn.sort-active{border-color:#e6bc52;color:#f3d27b;background:#3b3219;box-shadow:0 0 9px #cfa44344}
+@media(max-width:420px){.battle-arena{min-height:305px}.battle-arena .entity-card{grid-template-rows:90px 31px minmax(55px,auto) 20px;min-height:215px}.status-equip-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
     </style>
 </head>
 <body>
@@ -161,7 +190,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
     <div id="intro-screen">
         <div class="intro-title">ECHOES</div>
         <div class="intro-subtitle">Dice of the Dark</div>
-        <div class="build-version">TEST BUILD · v2.13</div>
+        <div class="build-version">TEST BUILD · v2.14</div>
         <button class="intro-btn start" onclick="startGame()">▶ 게임 시작</button>
         <button class="intro-btn" onclick="showRecords()">🏆 기록 및 업적</button>
     </div>
@@ -173,23 +202,24 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         </div>
 
         <h1 class="game-title">ECHOES</h1>
-        <div class="build-version">TEST BUILD · v2.13</div>
+        <div class="build-version">TEST BUILD · v2.14</div>
         <div id="stage-display">STAGE 1</div>
 
         <div class="battle-arena">
+            <div class="reward-preview" id="reward-preview">💰 이번 턴 처치 보상: 20G</div>
             <div class="entity-card enemy-card" id="enemy-card">
                 <div class="flash-overlay" id="enemy-flash"></div>
                 <div class="pixel-figure" id="enemy-pixel"></div>
                 <div class="name" id="enemy-name-ui">💀 해골 병사</div>
-                <div id="enemy-trait-ui"></div>
-                <div class="enemy-intent" id="enemy-intent"></div>
-                <div class="reward-preview" id="reward-preview">💰 이번 턴 처치 보상: 20G</div>
+                <div class="enemy-details"><div id="enemy-trait-ui"></div>
+                <div class="enemy-intent" id="enemy-intent"></div></div>
                 <div class="hp-bar-bg"><div class="hp-bar-fill" id="enemy-hp-fill"></div><div class="hp-text" id="enemy-hp-text">150 / 150</div></div>
             </div>
             <div class="entity-card player-card" id="player-card">
                 <div class="flash-overlay" id="player-flash"></div>
                 <div class="pixel-figure" id="player-pixel"><svg class="pixel-sprite" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true"><rect x="7" y="1" width="1" height="1" fill="#10121c"/><rect x="8" y="1" width="1" height="1" fill="#10121c"/><rect x="9" y="1" width="1" height="1" fill="#10121c"/><rect x="10" y="1" width="1" height="1" fill="#10121c"/><rect x="11" y="1" width="1" height="1" fill="#10121c"/><rect x="12" y="1" width="1" height="1" fill="#10121c"/><rect x="6" y="2" width="1" height="1" fill="#10121c"/><rect x="7" y="2" width="1" height="1" fill="#798a9b"/><rect x="8" y="2" width="1" height="1" fill="#798a9b"/><rect x="9" y="2" width="1" height="1" fill="#798a9b"/><rect x="10" y="2" width="1" height="1" fill="#798a9b"/><rect x="11" y="2" width="1" height="1" fill="#798a9b"/><rect x="12" y="2" width="1" height="1" fill="#798a9b"/><rect x="13" y="2" width="1" height="1" fill="#10121c"/><rect x="6" y="3" width="1" height="1" fill="#10121c"/><rect x="7" y="3" width="1" height="1" fill="#798a9b"/><rect x="8" y="3" width="1" height="1" fill="#d7dce1"/><rect x="9" y="3" width="1" height="1" fill="#d7dce1"/><rect x="10" y="3" width="1" height="1" fill="#d7dce1"/><rect x="11" y="3" width="1" height="1" fill="#d7dce1"/><rect x="12" y="3" width="1" height="1" fill="#798a9b"/><rect x="13" y="3" width="1" height="1" fill="#10121c"/><rect x="6" y="4" width="1" height="1" fill="#10121c"/><rect x="7" y="4" width="1" height="1" fill="#798a9b"/><rect x="8" y="4" width="1" height="1" fill="#10121c"/><rect x="9" y="4" width="1" height="1" fill="#10121c"/><rect x="10" y="4" width="1" height="1" fill="#798a9b"/><rect x="11" y="4" width="1" height="1" fill="#798a9b"/><rect x="12" y="4" width="1" height="1" fill="#798a9b"/><rect x="13" y="4" width="1" height="1" fill="#10121c"/><rect x="6" y="5" width="1" height="1" fill="#10121c"/><rect x="7" y="5" width="1" height="1" fill="#798a9b"/><rect x="8" y="5" width="1" height="1" fill="#d7dce1"/><rect x="9" y="5" width="1" height="1" fill="#d7dce1"/><rect x="10" y="5" width="1" height="1" fill="#798a9b"/><rect x="11" y="5" width="1" height="1" fill="#798a9b"/><rect x="12" y="5" width="1" height="1" fill="#798a9b"/><rect x="13" y="5" width="1" height="1" fill="#10121c"/><rect x="5" y="6" width="1" height="1" fill="#10121c"/><rect x="6" y="6" width="1" height="1" fill="#10121c"/><rect x="7" y="6" width="1" height="1" fill="#10121c"/><rect x="8" y="6" width="1" height="1" fill="#354454"/><rect x="9" y="6" width="1" height="1" fill="#354454"/><rect x="10" y="6" width="1" height="1" fill="#354454"/><rect x="11" y="6" width="1" height="1" fill="#354454"/><rect x="12" y="6" width="1" height="1" fill="#10121c"/><rect x="13" y="6" width="1" height="1" fill="#10121c"/><rect x="14" y="6" width="1" height="1" fill="#10121c"/><rect x="4" y="7" width="1" height="1" fill="#10121c"/><rect x="5" y="7" width="1" height="1" fill="#aa3145"/><rect x="6" y="7" width="1" height="1" fill="#aa3145"/><rect x="7" y="7" width="1" height="1" fill="#10121c"/><rect x="8" y="7" width="1" height="1" fill="#798a9b"/><rect x="9" y="7" width="1" height="1" fill="#798a9b"/><rect x="10" y="7" width="1" height="1" fill="#798a9b"/><rect x="11" y="7" width="1" height="1" fill="#798a9b"/><rect x="12" y="7" width="1" height="1" fill="#10121c"/><rect x="13" y="7" width="1" height="1" fill="#354454"/><rect x="14" y="7" width="1" height="1" fill="#10121c"/><rect x="3" y="8" width="1" height="1" fill="#10121c"/><rect x="4" y="8" width="1" height="1" fill="#aa3145"/><rect x="5" y="8" width="1" height="1" fill="#aa3145"/><rect x="6" y="8" width="1" height="1" fill="#aa3145"/><rect x="7" y="8" width="1" height="1" fill="#10121c"/><rect x="8" y="8" width="1" height="1" fill="#798a9b"/><rect x="9" y="8" width="1" height="1" fill="#d7dce1"/><rect x="10" y="8" width="1" height="1" fill="#d7dce1"/><rect x="11" y="8" width="1" height="1" fill="#d7dce1"/><rect x="12" y="8" width="1" height="1" fill="#10121c"/><rect x="13" y="8" width="1" height="1" fill="#354454"/><rect x="14" y="8" width="1" height="1" fill="#354454"/><rect x="15" y="8" width="1" height="1" fill="#10121c"/><rect x="3" y="9" width="1" height="1" fill="#10121c"/><rect x="4" y="9" width="1" height="1" fill="#aa3145"/><rect x="5" y="9" width="1" height="1" fill="#aa3145"/><rect x="6" y="9" width="1" height="1" fill="#aa3145"/><rect x="7" y="9" width="1" height="1" fill="#10121c"/><rect x="8" y="9" width="1" height="1" fill="#798a9b"/><rect x="9" y="9" width="1" height="1" fill="#798a9b"/><rect x="10" y="9" width="1" height="1" fill="#798a9b"/><rect x="11" y="9" width="1" height="1" fill="#798a9b"/><rect x="12" y="9" width="1" height="1" fill="#10121c"/><rect x="13" y="9" width="1" height="1" fill="#354454"/><rect x="14" y="9" width="1" height="1" fill="#354454"/><rect x="15" y="9" width="1" height="1" fill="#10121c"/><rect x="2" y="10" width="1" height="1" fill="#10121c"/><rect x="3" y="10" width="1" height="1" fill="#aa3145"/><rect x="4" y="10" width="1" height="1" fill="#aa3145"/><rect x="5" y="10" width="1" height="1" fill="#aa3145"/><rect x="6" y="10" width="1" height="1" fill="#10121c"/><rect x="7" y="10" width="1" height="1" fill="#10121c"/><rect x="8" y="10" width="1" height="1" fill="#798a9b"/><rect x="9" y="10" width="1" height="1" fill="#798a9b"/><rect x="10" y="10" width="1" height="1" fill="#798a9b"/><rect x="11" y="10" width="1" height="1" fill="#798a9b"/><rect x="12" y="10" width="1" height="1" fill="#10121c"/><rect x="13" y="10" width="1" height="1" fill="#10121c"/><rect x="14" y="10" width="1" height="1" fill="#354454"/><rect x="15" y="10" width="1" height="1" fill="#10121c"/><rect x="2" y="11" width="1" height="1" fill="#10121c"/><rect x="3" y="11" width="1" height="1" fill="#aa3145"/><rect x="4" y="11" width="1" height="1" fill="#aa3145"/><rect x="5" y="11" width="1" height="1" fill="#10121c"/><rect x="7" y="11" width="1" height="1" fill="#10121c"/><rect x="8" y="11" width="1" height="1" fill="#354454"/><rect x="9" y="11" width="1" height="1" fill="#354454"/><rect x="10" y="11" width="1" height="1" fill="#354454"/><rect x="11" y="11" width="1" height="1" fill="#354454"/><rect x="12" y="11" width="1" height="1" fill="#10121c"/><rect x="14" y="11" width="1" height="1" fill="#10121c"/><rect x="15" y="11" width="1" height="1" fill="#10121c"/><rect x="3" y="12" width="1" height="1" fill="#10121c"/><rect x="4" y="12" width="1" height="1" fill="#10121c"/><rect x="7" y="12" width="1" height="1" fill="#10121c"/><rect x="8" y="12" width="1" height="1" fill="#354454"/><rect x="9" y="12" width="1" height="1" fill="#798a9b"/><rect x="10" y="12" width="1" height="1" fill="#798a9b"/><rect x="11" y="12" width="1" height="1" fill="#354454"/><rect x="12" y="12" width="1" height="1" fill="#10121c"/><rect x="15" y="12" width="1" height="1" fill="#10121c"/><rect x="7" y="13" width="1" height="1" fill="#10121c"/><rect x="8" y="13" width="1" height="1" fill="#354454"/><rect x="9" y="13" width="1" height="1" fill="#798a9b"/><rect x="10" y="13" width="1" height="1" fill="#798a9b"/><rect x="11" y="13" width="1" height="1" fill="#354454"/><rect x="12" y="13" width="1" height="1" fill="#10121c"/><rect x="15" y="13" width="1" height="1" fill="#10121c"/><rect x="18" y="13" width="1" height="1" fill="#e8c27b"/><rect x="7" y="14" width="1" height="1" fill="#10121c"/><rect x="8" y="14" width="1" height="1" fill="#354454"/><rect x="9" y="14" width="1" height="1" fill="#798a9b"/><rect x="10" y="14" width="1" height="1" fill="#798a9b"/><rect x="11" y="14" width="1" height="1" fill="#354454"/><rect x="12" y="14" width="1" height="1" fill="#10121c"/><rect x="15" y="14" width="1" height="1" fill="#10121c"/><rect x="17" y="14" width="1" height="1" fill="#e8c27b"/><rect x="18" y="14" width="1" height="1" fill="#e8c27b"/><rect x="7" y="15" width="1" height="1" fill="#10121c"/><rect x="8" y="15" width="1" height="1" fill="#354454"/><rect x="9" y="15" width="1" height="1" fill="#798a9b"/><rect x="10" y="15" width="1" height="1" fill="#798a9b"/><rect x="11" y="15" width="1" height="1" fill="#354454"/><rect x="12" y="15" width="1" height="1" fill="#10121c"/><rect x="15" y="15" width="1" height="1" fill="#10121c"/><rect x="16" y="15" width="1" height="1" fill="#e8c27b"/><rect x="17" y="15" width="1" height="1" fill="#e8c27b"/><rect x="18" y="15" width="1" height="1" fill="#10121c"/><rect x="7" y="16" width="1" height="1" fill="#10121c"/><rect x="8" y="16" width="1" height="1" fill="#10121c"/><rect x="9" y="16" width="1" height="1" fill="#354454"/><rect x="10" y="16" width="1" height="1" fill="#354454"/><rect x="11" y="16" width="1" height="1" fill="#10121c"/><rect x="12" y="16" width="1" height="1" fill="#10121c"/><rect x="15" y="16" width="1" height="1" fill="#10121c"/><rect x="16" y="16" width="1" height="1" fill="#e8c27b"/><rect x="17" y="16" width="1" height="1" fill="#10121c"/><rect x="7" y="17" width="1" height="1" fill="#10121c"/><rect x="8" y="17" width="1" height="1" fill="#354454"/><rect x="9" y="17" width="1" height="1" fill="#10121c"/><rect x="10" y="17" width="1" height="1" fill="#10121c"/><rect x="11" y="17" width="1" height="1" fill="#354454"/><rect x="12" y="17" width="1" height="1" fill="#10121c"/><rect x="15" y="17" width="1" height="1" fill="#e8c27b"/><rect x="16" y="17" width="1" height="1" fill="#10121c"/><rect x="6" y="18" width="1" height="1" fill="#10121c"/><rect x="7" y="18" width="1" height="1" fill="#354454"/><rect x="8" y="18" width="1" height="1" fill="#354454"/><rect x="9" y="18" width="1" height="1" fill="#10121c"/><rect x="10" y="18" width="1" height="1" fill="#10121c"/><rect x="11" y="18" width="1" height="1" fill="#354454"/><rect x="12" y="18" width="1" height="1" fill="#354454"/><rect x="13" y="18" width="1" height="1" fill="#10121c"/><rect x="15" y="18" width="1" height="1" fill="#10121c"/><rect x="6" y="19" width="1" height="1" fill="#10121c"/><rect x="7" y="19" width="1" height="1" fill="#10121c"/><rect x="8" y="19" width="1" height="1" fill="#10121c"/><rect x="9" y="19" width="1" height="1" fill="#10121c"/><rect x="10" y="19" width="1" height="1" fill="#10121c"/><rect x="11" y="19" width="1" height="1" fill="#10121c"/><rect x="12" y="19" width="1" height="1" fill="#10121c"/><rect x="13" y="19" width="1" height="1" fill="#10121c"/></svg></div>
                 <div class="name">🛡️ 방랑 기사</div>
+                <div class="player-details"></div>
                 <div class="hp-bar-bg"><div class="hp-bar-fill" id="player-hp-fill"></div><div class="hp-text" id="player-hp-text">100 / 100</div></div>
             </div>
         </div>
@@ -473,21 +503,21 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
     function toggleStatus(s) { 
         document.getElementById('status-modal').classList.toggle('active', s); 
         if(s) {
-            let h = `<div style="color:#d4af37; font-weight:bold; margin-bottom:8px;">🎒 장착 중인 아이템</div>`;
-            let hasItem = false;
-            Object.keys(equipment).forEach(k => {
-                if(equipment[k]) {
-                    hasItem = true; let eff = [];
-                    if(equipment[k].power) eff.push(`위력+${equipment[k].power}`);
-                    if(equipment[k].defense) eff.push(`방어+${equipment[k].defense}`);
-                    if(equipment[k].rollBonus) eff.push(`리롤+${equipment[k].rollBonus}`);
-                    if(equipment[k].lifesteal) eff.push(`흡혈+${equipment[k].lifesteal}`);
-                    if(equipment[k].regen) eff.push(`재생+${equipment[k].regen}`);
-                    h += `<div style="font-size:0.9rem; color:#ccc; margin-bottom:4px;"><strong style="color:#fff;">[${SLOT_NAMES[k]}] ${equipment[k].name}</strong> <span style="color:#aaa;">(${eff.join(', ')})</span></div>`;
+            let h = `<div style="color:#d4af37; font-weight:bold; margin-bottom:8px;">🎒 장착 중인 아이템 (8칸)</div><div class="status-equip-grid">`;
+            Object.keys(SLOT_NAMES).forEach(k => {
+                const item = equipment[k];
+                const eff = [];
+                if(item){
+                    if(item.power) eff.push(`위력 +${item.power}`);
+                    if(item.defense) eff.push(`방어 +${item.defense}`);
+                    if(item.rollBonus) eff.push(`리롤 +${item.rollBonus}`);
+                    if(item.lifesteal) eff.push(`흡혈 +${item.lifesteal}`);
+                    if(item.regen) eff.push(`재생 +${item.regen}`);
                 }
+                h += `<div class="status-equip-cell ${item?'filled':''}"><div class="status-equip-slot">${SLOT_NAMES[k]}</div><div class="status-equip-name">${item?item.name:'비어 있음'}</div>${item?`<div class="status-equip-stats">${eff.join(' · ')}</div>`:''}</div>`;
             });
-            if(!hasItem) h += `<div style="color:#888; font-size:0.9rem;">없음</div>`;
-            
+            h += `</div>`;
+
             h += `<div style="color:#4cd137; font-weight:bold; margin-top:15px; margin-bottom:8px;">📖 족보 레벨</div>`;
             POKER_HANDS.forEach(ph => {
                 h += `<div style="display:flex; justify-content:space-between; margin-bottom:5px; font-size:0.9rem; border-bottom:1px dashed #444; padding-bottom:4px;"><span style="color:#ccc;">${ph.name} <small>(Lv.${ph.level})</small></span> <span style="color:#ccc;">${ph.basePower} / ${ph.baseFocus}</span></div>`;
@@ -525,7 +555,8 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         const btn = document.getElementById('roll-btn');
         const sortBtn = document.getElementById('sort-btn');
         
-        if (isAnimating || isFirstRoll) sortBtn.disabled = true; else sortBtn.disabled = false;
+        sortBtn.disabled = isAnimating;
+        refreshSortButton();
 
         if (isAnimating) { btn.disabled = true; btn.innerText = "진행 중..."; } 
         else if (isFirstRoll) { btn.disabled = false; btn.className = ""; btn.innerText = "🎲 처음 굴리기"; } 
@@ -536,12 +567,21 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 
     function toggleHold(i) { if (isFirstRoll || isAnimating) return; held[i] = !held[i]; renderDice(); updateButtonUI(); }
 
+    let autoSortDice = false;
+    function sortDiceValues() {
+        let combined = dice.map((v, i) => ({val:v, locked:held[i]}));
+        combined.sort((a,b) => a.val-b.val);
+        combined.forEach((entry,i) => {dice[i]=entry.val;held[i]=entry.locked;});
+    }
+    function refreshSortButton() {
+        const b = document.getElementById('sort-btn');
+        b.classList.toggle('sort-active',autoSortDice);
+        b.innerText = autoSortDice ? '✓ 눈금 자동 정렬 ON' : '🔢 눈금 자동 정렬 OFF';
+    }
     function sortDice() {
-        if(isFirstRoll || isAnimating) return;
-        let combined = dice.map((v, i) => ({ val: v, held: held[i] }));
-        combined.sort((a, b) => a.val - b.val);
-        for(let i=0; i<5; i++) { dice[i] = combined[i].val; held[i] = combined[i].held; }
-        renderDice();
+        autoSortDice = !autoSortDice;
+        if(autoSortDice && !isFirstRoll && !isAnimating) {sortDiceValues();renderDice();}
+        refreshSortButton();
     }
 
     function rollDice() {
@@ -557,7 +597,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         document.getElementById('recommendation-box').innerHTML = "주사위 굴리는 중...";
         
         updateUI(); 
-        setTimeout(() => { renderDice(); evaluateHands(); isAnimating = false; updateButtonUI(); }, 400);
+        setTimeout(() => { if(autoSortDice) sortDiceValues(); renderDice(); evaluateHands(); isAnimating = false; updateButtonUI(); }, 400);
     }
 
     function renderDice() {
@@ -596,6 +636,16 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         });
     }
 
+    function showFloatingDamage(targetId, amount, kind='outgoing') {
+        const target = document.getElementById(targetId);
+        if(!target) return;
+        const node = document.createElement('div');
+        node.className = `damage-float ${kind}`;
+        node.textContent = amount > 0 ? `-${amount}` : 'BLOCK';
+        target.appendChild(node);
+        setTimeout(() => node.remove(), 1000);
+    }
+
     function playerAttack(name, damage) {
         isAnimating = true; updateButtonUI(); document.getElementById('hands-container').innerHTML = '';
         let actualDmg = damage;
@@ -630,7 +680,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
             runStats.bestDamage = actualDmg;
             runStats.bestHand = name;
         }
-        enemyHp -= actualDmg; updateUI();
+        enemyHp -= actualDmg; showFloatingDamage('enemy-card', actualDmg, actualDmg===0?'blocked':'outgoing'); updateUI();
 
         setTimeout(() => {
             if (enemyHp <= 0) {
@@ -723,7 +773,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         pc.classList.add('hit-shake'); pf.classList.add('flash-active');
         setTimeout(() => { pc.classList.remove('hit-shake'); pf.classList.remove('flash-active'); }, 300);
 
-        playerHp -= finalDmg; updateUI();
+        playerHp -= finalDmg; showFloatingDamage('player-card', finalDmg, 'incoming'); updateUI();
 
         setTimeout(() => {
             if (playerHp <= 0) showRunEnding(false);
