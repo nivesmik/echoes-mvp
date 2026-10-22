@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ECHOES v2.25 — The Last Echo</title>
+    <title>ECHOES v2.26 — The Last Echo</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Noto+Sans+KR:wght@400;700&display=swap');
 
@@ -156,7 +156,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 
         .build-version { color:#a79a7e; font-size:0.72rem; letter-spacing:1.6px; text-align:center; margin:2px 0 8px; }
 
-/* v2.25 combat alignment, feedback, status and sticky sorting */
+/* v2.26 combat alignment, feedback, status and sticky sorting */
 .battle-arena{grid-template-rows:auto 1fr;padding-top:12px;min-height:340px;align-items:stretch}
 .battle-arena .reward-preview{grid-column:1/-1;grid-row:1;z-index:3;justify-self:center;background:#201b14ed;border:1px solid #ad883d;border-radius:7px;padding:6px 16px;margin:0 0 6px;font-size:.82rem;color:#ffd57a}
 .battle-arena .entity-card{grid-row:2;display:grid;grid-template-rows:112px 34px minmax(46px,auto) 22px;align-items:end;justify-items:center;gap:4px;min-height:245px;align-content:end}
@@ -185,7 +185,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 @media(max-width:420px){.battle-arena{min-height:305px}.battle-arena .entity-card{grid-template-rows:90px 31px minmax(55px,auto) 20px;min-height:215px}.status-equip-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 
-/* v2.25: shared ground line, opposing characters, details below combatants */
+/* v2.26: shared ground line, opposing characters, details below combatants */
 .battle-arena{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:44px minmax(0,1fr);gap:0 10px;min-height:330px;padding:10px 12px 14px;align-items:stretch}
 .battle-arena .reward-preview{grid-row:1;align-self:start;margin:0;max-width:92%;box-sizing:border-box}
 .battle-arena .entity-card{grid-row:2;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:140px 28px minmax(48px,auto) 22px;gap:3px;align-content:end;justify-items:center;min-height:245px;padding:5px 8px 7px;background:rgba(11,14,22,.55);border-color:rgba(142,132,118,.45)}
@@ -203,7 +203,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 @media(max-width:420px){.battle-arena{min-height:292px;padding:8px 5px 10px;gap:0 5px;grid-template-rows:42px minmax(0,1fr)}.battle-arena .entity-card{grid-template-rows:105px 26px minmax(54px,auto) 20px;min-height:218px;padding:4px}.battle-arena .pixel-figure{height:105px;margin-right:0}.battle-arena .enemy-card .pixel-figure{margin-left:0}.battle-arena .pixel-sprite{height:104px;width:104px}}
 
     
-/* v2.25 — wide theatrical stage: actors at opposite edges, open center */
+/* v2.26 — wide theatrical stage: actors at opposite edges, open center */
 .battle-arena {
   grid-template-columns: minmax(0, 29%) minmax(0, 42%) minmax(0, 29%);
   grid-template-rows: 46px minmax(0,1fr);
@@ -258,7 +258,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 }
 
 
-/* v2.25 - status clarity, loot comparison, collections */
+/* v2.26 - status clarity, loot comparison, collections */
 .battle-arena .player-effects {grid-row:3;grid-column:1;align-self:center;width:100%;box-sizing:border-box;}
 .player-effects {font-size:.75rem; color:#b7d9f8; min-height:34px; text-align:center; display:flex; flex-wrap:wrap; gap:4px; justify-content:center; align-items:center; padding:3px;}
 .effect-chip {display:inline-block; border:1px solid #42637c; background:#14202d; border-radius:5px; padding:2px 5px;}
@@ -291,7 +291,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 .status-hand-row.mastered{border-color:#e05b5b!important;background:rgba(178,32,38,.16)!important;box-shadow:inset 3px 0 #d94848}
 .equip-slot{cursor:default}
 
-/* v2.25: compact play layout, no overlapping header and fixed intent rows */
+/* v2.26: compact play layout, no overlapping header and fixed intent rows */
 .enemy-intent{display:block!important;width:100%;box-sizing:border-box;text-align:center;white-space:normal;overflow-wrap:normal!important;padding:4px 2px!important}
 .enemy-damage-line{display:block;white-space:nowrap;font-size:clamp(10px,1.3vw,13px)}
 .enemy-damage-line.expected{color:#7ae28a;margin-top:3px}
@@ -334,7 +334,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 }
 @media(max-width:390px){.top-buttons .btn-top{font-size:.68rem;padding:6px 5px}.enemy-damage-line{font-size:10px}}
 
-/* v2.25: phase-oriented landscape interface. All three phases use one viewport. */
+/* v2.26: phase-oriented landscape interface. All three phases use one viewport. */
 #trophy-modal,#boss-reward-modal,#shop-modal {padding:12px;box-sizing:border-box;align-items:center;justify-content:center;}
 #trophy-modal .modal-box,#boss-reward-modal .modal-box,#shop-modal .modal-box {
  box-sizing:border-box;width:min(1180px,98vw);max-width:1180px;
@@ -397,7 +397,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 }
 
 
-/* v2.25: actual three-column battle UI (equipment / battle / dice) */
+/* v2.26: actual three-column battle UI (equipment / battle / dice) */
 #game-screen{max-width:1450px!important;width:min(98vw,1450px)!important;display:block!important;margin-inline:auto!important;}
 #game-screen>.top-buttons,#game-screen>.game-title,#game-screen>.build-version,#game-screen>#stage-display{display:flex;justify-content:center;margin:3px auto!important;}
 #game-screen>.game-title{display:block;text-align:center;font-size:clamp(1.45rem,2.3vw,2.2rem);}
@@ -452,6 +452,52 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 @media(max-width:1000px){#game-screen>.combat-layout{grid-template-columns:minmax(0,2.5fr) minmax(0,5fr) minmax(0,2.5fr);gap:5px;}.combat-sidebar{padding:5px;}.combat-center .battle-arena{min-height:285px!important;}.combat-center .battle-arena .pixel-figure,.combat-center .battle-arena .pixel-sprite{height:90px!important;width:90px!important;}.combat-center .battle-arena .entity-card{grid-template-rows:90px 26px minmax(62px,auto) 20px!important;}}
 @media(max-width:700px){#game-screen>.combat-layout,#game-screen>.combat-layout.ratio-343{grid-template-columns:minmax(0,1fr)!important;}.combat-center{order:1}.combat-sidebar-right{order:2}.combat-sidebar-left{order:3}.combat-sidebar .inventory-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;}.combat-center .battle-arena{min-height:260px!important;}.combat-sidebar-right .die{width:44px!important;height:44px!important;}}
 
+
+/* v2.26: 1600×900 reference canvas. Responsive scaling, not a hard viewport lock. */
+*,*::before,*::after{box-sizing:border-box;}
+#game-screen{width:min(calc(100vw - 24px),1600px)!important;max-width:1600px!important;margin:0 auto!important;}
+#game-screen>.combat-layout{grid-template-columns:minmax(0,2fr) minmax(0,6fr) minmax(0,2fr)!important;
+  align-items:stretch!important;height:clamp(450px,calc(100dvh - 190px),660px);min-height:0!important;max-height:660px;}
+#game-screen>.combat-layout.ratio-343{grid-template-columns:minmax(0,2fr) minmax(0,6fr) minmax(0,2fr)!important;}
+#game-screen>.combat-layout>.combat-sidebar,#game-screen>.combat-layout>.combat-center{min-width:0;min-height:0;height:100%;max-height:100%;overflow:hidden;}
+#game-screen>.combat-layout>.combat-sidebar{overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;}
+#game-screen>.combat-layout>.combat-center{justify-content:center;}
+#game-screen>.combat-layout .battle-arena{max-height:100%;min-height:0!important;height:min(100%,490px)!important;overflow:hidden;}
+#game-screen>.combat-layout .battle-arena .entity-card{min-width:0;overflow:hidden;}
+#game-screen>.combat-layout .battle-arena .entity-card .name{overflow-wrap:anywhere;}
+#game-screen>.combat-layout .combat-sidebar-right>*{min-width:0;max-width:100%;}
+#game-screen>.combat-layout .combat-sidebar-right button{max-width:100%;min-width:0;white-space:normal;overflow-wrap:anywhere;}
+#game-screen>.combat-layout .combat-sidebar-right .hands-container{width:100%;min-width:0;}
+#game-screen>.combat-layout .combat-sidebar-right .hand-row{width:100%;min-width:0;overflow-wrap:anywhere;}
+#game-screen>.combat-layout .combat-sidebar-right .hand-row>*{min-width:0;}
+#game-screen>.combat-layout .combat-sidebar-right .hand-row .play-btn{flex-shrink:0;}
+#game-screen>.combat-layout .combat-sidebar-right .dice-container{max-width:100%;}
+#game-screen>.combat-layout .combat-sidebar-right .die{width:clamp(23px,2.35vw,40px)!important;height:clamp(23px,2.35vw,40px)!important;}
+.combat-hands-details-btn{width:100%;max-width:100%;padding:7px 5px;border:1px solid #a58b52;border-radius:6px;background:#3b3225;color:#f2d48b;cursor:pointer;font-size:.72rem;}
+.combat-hands-details-btn[aria-pressed="true"]{background:#554126;}
+.combat-hand-level{display:block;min-width:0;padding:7px 5px;}
+.combat-hand-heading{display:flex;justify-content:space-between;gap:4px;align-items:center;min-width:0;}
+.combat-hand-heading span{overflow-wrap:anywhere;min-width:0;}
+.combat-hand-heading strong{white-space:nowrap;}
+.combat-hand-equation{margin-top:6px;padding-top:6px;border-top:1px solid #50505a;font-size:.69rem;line-height:1.45;color:#e1e5ee;overflow-wrap:anywhere;font-variant-numeric:tabular-nums;}
+.hand-details-note[hidden]{display:none!important;}
+/* Rewards and shop share a constrained viewport, scrolling within their own content. */
+#shop-modal .modal-box,#trophy-modal .modal-box,#boss-reward-modal .modal-box{max-height:min(92dvh,800px)!important;overflow-y:auto!important;overscroll-behavior:contain;scrollbar-width:thin;}
+@media(min-width:1050px){
+ #game-screen>.combat-layout{gap:10px;}
+ #game-screen>.combat-layout .combat-sidebar-right .hand-row{display:grid!important;grid-template-columns:minmax(0,1fr) auto;align-items:center;}
+}
+@media(max-width:1050px) and (min-width:701px){
+ #game-screen>.combat-layout{gap:5px;}
+ #game-screen>.combat-layout .combat-sidebar-right .hand-row{display:flex!important;flex-direction:column;align-items:stretch;}
+ #game-screen>.combat-layout .combat-sidebar-right .hand-row .play-btn{width:100%;}
+}
+@media(max-width:700px){
+ #game-screen>.combat-layout{grid-template-columns:minmax(0,1fr)!important;height:auto!important;max-height:none!important;}
+ #game-screen>.combat-layout>.combat-sidebar,#game-screen>.combat-layout>.combat-center{height:auto;max-height:none;overflow:visible;}
+ #game-screen>.combat-layout .battle-arena{height:auto!important;min-height:260px!important;}
+}
+
 </style>
 </head>
 <body>
@@ -459,7 +505,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
     <div id="intro-screen">
         <div class="intro-title">ECHOES</div>
         <div class="intro-subtitle">Dice of the Dark</div>
-        <div class="build-version">TEST BUILD · v2.25</div>
+        <div class="build-version">TEST BUILD · v2.26</div>
         <button class="intro-btn start" onclick="startGame()">▶ 새 게임 시작</button>
         <button class="intro-btn" id="continue-btn" onclick="continueGame()" style="display:none;border-color:#d4af37;color:#f4d77e">↪ 이어하기</button>
         <button class="intro-btn" onclick="showRecords()">🏆 기록 및 업적</button>
@@ -475,10 +521,8 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         </div>
 
         <h1 class="game-title">ECHOES</h1>
-        <div class="build-version">TEST BUILD · v2.25</div>
+        <div class="build-version">TEST BUILD · v2.26</div>
         <div id="stage-display">STAGE 1</div>
-
-        <div class="combat-ratio-switch" role="group" aria-label="전투 화면 비율"><button type="button" data-combat-ratio="262" class="selected" onclick="setCombatRatio('262')">2 : 6 : 2</button><button type="button" data-combat-ratio="343" onclick="setCombatRatio('343')">3 : 4 : 3</button></div>
     <div class="combat-layout" id="combat-layout">
       <aside class="combat-sidebar combat-sidebar-left">
         <div class="combat-tab-switch" role="group" aria-label="왼쪽 정보 패널">
@@ -501,6 +545,8 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         </div>
         <div id="combat-hands-panel" class="combat-panel" hidden>
           <div class="combat-panel-caption">강화한 족보 · 색상은 레벨에 따라 변화</div>
+          <button type="button" id="combat-hands-details-btn" class="combat-hands-details-btn" aria-pressed="false" onclick="toggleCombatHandDetails()">📐 상세 정보 보기</button>
+          <div class="combat-panel-caption hand-details-note" id="combat-hand-details-note" hidden>장비 보너스를 제외한 족보 자체의 위력 × 집중입니다.</div>
           <div id="combat-hand-levels"></div>
         </div>
       </aside>
@@ -760,7 +806,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         { id: 'chance', name: '찬스', basePower: 0, baseFocus: 1, level: 1, pUp: 0, fUp: 0 }
     ];
 
-    // v2.25: 이어하기는 이 브라우저의 localStorage에만 저장됩니다.
+    // v2.26: 이어하기는 이 브라우저의 localStorage에만 저장됩니다.
     const RUN_SAVE_KEY = 'echoesRun_v218';
     let shopOffers = [];
     let shopSold = [];
@@ -943,7 +989,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         b.setAttribute('aria-pressed',String(equipmentDetailsVisible));
     }
 
-    // v2.25: battle sidebar tabs, always read the live equipment and hand levels.
+    // v2.26: battle sidebar tabs, always read the live equipment and hand levels.
     let combatPanel = 'equipment';
     function switchCombatPanel(panel) {
         combatPanel = panel === 'hands' ? 'hands' : 'equipment';
@@ -959,18 +1005,43 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
     function combatHandTier(level) {
         return level >= 6 ? 'tier-red' : level >= 4 ? 'tier-orange' : level >= 2 ? 'tier-yellow' : 'tier-white';
     }
+    let combatHandDetailsVisible = false;
+    function toggleCombatHandDetails() {
+        combatHandDetailsVisible = !combatHandDetailsVisible;
+        const btn = document.getElementById('combat-hands-details-btn');
+        const note = document.getElementById('combat-hand-details-note');
+        if (btn) {
+            btn.setAttribute('aria-pressed', String(combatHandDetailsVisible));
+            btn.textContent = combatHandDetailsVisible ? '📐 상세 정보 숨기기' : '📐 상세 정보 보기';
+        }
+        if (note) note.hidden = !combatHandDetailsVisible;
+        refreshCombatHandLevels();
+    }
     function refreshCombatHandLevels() {
         const container = document.getElementById('combat-hand-levels');
         if (!container || typeof POKER_HANDS === 'undefined') return;
-        container.innerHTML = '';
+        container.replaceChildren();
         POKER_HANDS.forEach(hand => {
             const line = document.createElement('div');
-            line.className = 'combat-hand-level ' + combatHandTier(hand.level);
+            line.className = 'combat-hand-level ' + combatHandTier(hand.level) + (combatHandDetailsVisible ? ' expanded' : '');
+            const heading = document.createElement('div');
+            heading.className = 'combat-hand-heading';
             const title = document.createElement('span');
             title.textContent = hand.name;
             const level = document.createElement('strong');
             level.textContent = 'Lv.' + hand.level;
-            line.append(title, level);
+            heading.append(title, level);
+            line.appendChild(heading);
+            if (combatHandDetailsVisible) {
+                const equation = document.createElement('div');
+                equation.className = 'combat-hand-equation';
+                // Base values are already upgraded when a planet card is purchased.
+                // Do not include the equipped weapon's power bonus here.
+                const power = Number(hand.basePower) || 0;
+                const focus = Number(hand.baseFocus) || 0;
+                equation.textContent = `위력 ${power} × 집중 ${focus} = ${power * focus}`;
+                line.appendChild(equation);
+            }
             container.appendChild(line);
         });
     }
@@ -1391,9 +1462,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 
     document.addEventListener('DOMContentLoaded', () => {
       switchCombatPanel('equipment');
-      let ratio = '262';
-      try { ratio = localStorage.getItem('echoes_combat_ratio') === '343' ? '343' : '262'; } catch(e) {}
-      setCombatRatio(ratio);
+      setCombatRatio('262');
     });
 </script>
 </body>
