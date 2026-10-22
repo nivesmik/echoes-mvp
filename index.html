@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ECHOES v2.15 — The Last Echo</title>
+    <title>ECHOES v2.17 — The Last Echo</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Noto+Sans+KR:wght@400;700&display=swap');
 
@@ -155,7 +155,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 
         .build-version { color:#a79a7e; font-size:0.72rem; letter-spacing:1.6px; text-align:center; margin:2px 0 8px; }
 
-/* v2.15 combat alignment, feedback, status and sticky sorting */
+/* v2.17 combat alignment, feedback, status and sticky sorting */
 .battle-arena{grid-template-rows:auto 1fr;padding-top:12px;min-height:340px;align-items:stretch}
 .battle-arena .reward-preview{grid-column:1/-1;grid-row:1;z-index:3;justify-self:center;background:#201b14ed;border:1px solid #ad883d;border-radius:7px;padding:6px 16px;margin:0 0 6px;font-size:.82rem;color:#ffd57a}
 .battle-arena .entity-card{grid-row:2;display:grid;grid-template-rows:112px 34px minmax(46px,auto) 22px;align-items:end;justify-items:center;gap:4px;min-height:245px;align-content:end}
@@ -184,7 +184,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 @media(max-width:420px){.battle-arena{min-height:305px}.battle-arena .entity-card{grid-template-rows:90px 31px minmax(55px,auto) 20px;min-height:215px}.status-equip-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 
-/* v2.15: shared ground line, opposing characters, details below combatants */
+/* v2.17: shared ground line, opposing characters, details below combatants */
 .battle-arena{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:44px minmax(0,1fr);gap:0 10px;min-height:330px;padding:10px 12px 14px;align-items:stretch}
 .battle-arena .reward-preview{grid-row:1;align-self:start;margin:0;max-width:92%;box-sizing:border-box}
 .battle-arena .entity-card{grid-row:2;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:140px 28px minmax(48px,auto) 22px;gap:3px;align-content:end;justify-items:center;min-height:245px;padding:5px 8px 7px;background:rgba(11,14,22,.55);border-color:rgba(142,132,118,.45)}
@@ -201,16 +201,95 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 .battle-arena::after{height:25px}
 @media(max-width:420px){.battle-arena{min-height:292px;padding:8px 5px 10px;gap:0 5px;grid-template-rows:42px minmax(0,1fr)}.battle-arena .entity-card{grid-template-rows:105px 26px minmax(54px,auto) 20px;min-height:218px;padding:4px}.battle-arena .pixel-figure{height:105px;margin-right:0}.battle-arena .enemy-card .pixel-figure{margin-left:0}.battle-arena .pixel-sprite{height:104px;width:104px}}
 
-    </style>
+    
+/* v2.17 — wide theatrical stage: actors at opposite edges, open center */
+.battle-arena {
+  grid-template-columns: minmax(0, 29%) minmax(0, 42%) minmax(0, 29%);
+  grid-template-rows: 46px minmax(0,1fr);
+  gap: 0;
+  min-height: 345px;
+  padding: 10px 12px 14px;
+  position: relative;
+}
+.battle-arena .reward-preview {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+  align-self: start;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+}
+.battle-arena .entity-card {
+  grid-row: 2;
+  grid-template-rows: 140px 28px minmax(48px,auto) 22px;
+  min-height: 245px;
+  padding: 5px 5px 7px;
+  background: linear-gradient(180deg,rgba(11,14,22,.10),rgba(11,14,22,.65));
+  border-color: rgba(142,132,118,.23);
+  align-content: end;
+  justify-items: center;
+  min-width: 0;
+}
+.battle-arena .player-card {grid-column: 1;}
+.battle-arena .enemy-card {grid-column: 3;}
+.battle-arena .pixel-figure,
+.battle-arena .enemy-card .pixel-figure {
+  grid-row: 1;
+  justify-self: center;
+  align-self: end;
+  height: 140px;
+  margin: 0;
+}
+.battle-arena .pixel-sprite {height: 136px;width: 136px;max-width: 100%;}
+.battle-arena .name {grid-row: 2; text-align:center;}
+.battle-arena .enemy-details,.battle-arena .player-details {grid-row: 3;min-width:0;width:100%;}
+.battle-arena .hp-bar-bg {grid-row: 4;width:100%;}
+.battle-arena .enemy-intent {overflow-wrap:anywhere;}
+@media(max-width:600px) {
+ .battle-arena {grid-template-columns:minmax(0,34%) minmax(0,32%) minmax(0,34%);min-height:315px;padding:8px 5px 10px;grid-template-rows:45px minmax(0,1fr);}
+ .battle-arena .entity-card {grid-template-rows:106px 32px minmax(56px,auto) 20px;min-height:222px;padding:4px 2px;}
+ .battle-arena .pixel-figure,.battle-arena .enemy-card .pixel-figure {height:106px;}
+ .battle-arena .pixel-sprite {height:104px;width:104px;}
+ .battle-arena .reward-preview {font-size:.68rem;padding:5px 4px;}
+ .battle-arena .name {font-size:.73rem;}
+ .battle-arena .enemy-intent,.battle-arena .enemy-trait {font-size:.61rem;}
+}
+
+
+/* v2.17 - status clarity, loot comparison, collections */
+.battle-arena .player-effects {grid-row:3;grid-column:1;align-self:center;width:100%;box-sizing:border-box;}
+.player-effects {font-size:.75rem; color:#b7d9f8; min-height:34px; text-align:center; display:flex; flex-wrap:wrap; gap:4px; justify-content:center; align-items:center; padding:3px;}
+.effect-chip {display:inline-block; border:1px solid #42637c; background:#14202d; border-radius:5px; padding:2px 5px;}
+.effect-chip.negative {border-color:#925581;color:#e6b3f4;background:#271626;}
+.equip-tooltip {display:none; font-size:.69rem; line-height:1.35; color:#b8d9ff; margin-top:4px; white-space:normal;}
+.equip-slot.details-open .equip-tooltip {display:block;}
+.equip-slot {cursor:pointer;}
+.status-hand-row {border:1px solid #404040; border-radius:6px; padding:8px; margin-bottom:7px; background:#202124;}
+.status-hand-row.upgraded {border-color:#d4af37;background:#302713;}
+.status-hand-row .howto {display:block;color:#aaa;font-size:.76rem;margin-top:4px;}
+.loot-equipment {background:#13171c;border:1px solid #514b3d;border-radius:7px;padding:10px;margin:12px 0;}
+.loot-equipment summary {color:#e5c36a;font-weight:bold;cursor:pointer;}
+.loot-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;margin-top:8px;}
+.loot-grid div {background:#24262b;padding:6px;border-radius:5px;font-size:.72rem;overflow-wrap:anywhere;}
+.collection-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px;}
+.collection-item {border:1px solid #504633;background:#272218;border-radius:6px;padding:9px;font-size:.82rem;}
+.collection-item.unknown {border-style:dashed;border-color:#414141;background:#191919;color:#777;}
+.upgrade-card {border:1px solid #67532c;border-radius:7px;background:#211c16;padding:10px;margin:10px 0;}
+.upgrade-card select {max-width:100%;background:#161616;color:#eee;border:1px solid #777;padding:7px;border-radius:4px;}
+.upgrade-card button {background:#d4af37;color:#161616;border:0;border-radius:4px;padding:8px;font-weight:bold;cursor:pointer;}
+
+</style>
 </head>
 <body>
 
     <div id="intro-screen">
         <div class="intro-title">ECHOES</div>
         <div class="intro-subtitle">Dice of the Dark</div>
-        <div class="build-version">TEST BUILD · v2.15</div>
+        <div class="build-version">TEST BUILD · v2.17</div>
         <button class="intro-btn start" onclick="startGame()">▶ 게임 시작</button>
         <button class="intro-btn" onclick="showRecords()">🏆 기록 및 업적</button>
+        <button class="intro-btn" onclick="showCollection()">📚 발견한 장비 도감</button>
     </div>
 
     <div id="game-screen">
@@ -220,7 +299,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         </div>
 
         <h1 class="game-title">ECHOES</h1>
-        <div class="build-version">TEST BUILD · v2.15</div>
+        <div class="build-version">TEST BUILD · v2.17</div>
         <div id="stage-display">STAGE 1</div>
 
         <div class="battle-arena">
@@ -237,6 +316,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
                 <div class="flash-overlay" id="player-flash"></div>
                 <div class="pixel-figure" id="player-pixel"><svg class="pixel-sprite" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true"><rect x="7" y="1" width="1" height="1" fill="#10121c"/><rect x="8" y="1" width="1" height="1" fill="#10121c"/><rect x="9" y="1" width="1" height="1" fill="#10121c"/><rect x="10" y="1" width="1" height="1" fill="#10121c"/><rect x="11" y="1" width="1" height="1" fill="#10121c"/><rect x="12" y="1" width="1" height="1" fill="#10121c"/><rect x="6" y="2" width="1" height="1" fill="#10121c"/><rect x="7" y="2" width="1" height="1" fill="#798a9b"/><rect x="8" y="2" width="1" height="1" fill="#798a9b"/><rect x="9" y="2" width="1" height="1" fill="#798a9b"/><rect x="10" y="2" width="1" height="1" fill="#798a9b"/><rect x="11" y="2" width="1" height="1" fill="#798a9b"/><rect x="12" y="2" width="1" height="1" fill="#798a9b"/><rect x="13" y="2" width="1" height="1" fill="#10121c"/><rect x="6" y="3" width="1" height="1" fill="#10121c"/><rect x="7" y="3" width="1" height="1" fill="#798a9b"/><rect x="8" y="3" width="1" height="1" fill="#d7dce1"/><rect x="9" y="3" width="1" height="1" fill="#d7dce1"/><rect x="10" y="3" width="1" height="1" fill="#d7dce1"/><rect x="11" y="3" width="1" height="1" fill="#d7dce1"/><rect x="12" y="3" width="1" height="1" fill="#798a9b"/><rect x="13" y="3" width="1" height="1" fill="#10121c"/><rect x="6" y="4" width="1" height="1" fill="#10121c"/><rect x="7" y="4" width="1" height="1" fill="#798a9b"/><rect x="8" y="4" width="1" height="1" fill="#10121c"/><rect x="9" y="4" width="1" height="1" fill="#10121c"/><rect x="10" y="4" width="1" height="1" fill="#798a9b"/><rect x="11" y="4" width="1" height="1" fill="#798a9b"/><rect x="12" y="4" width="1" height="1" fill="#798a9b"/><rect x="13" y="4" width="1" height="1" fill="#10121c"/><rect x="6" y="5" width="1" height="1" fill="#10121c"/><rect x="7" y="5" width="1" height="1" fill="#798a9b"/><rect x="8" y="5" width="1" height="1" fill="#d7dce1"/><rect x="9" y="5" width="1" height="1" fill="#d7dce1"/><rect x="10" y="5" width="1" height="1" fill="#798a9b"/><rect x="11" y="5" width="1" height="1" fill="#798a9b"/><rect x="12" y="5" width="1" height="1" fill="#798a9b"/><rect x="13" y="5" width="1" height="1" fill="#10121c"/><rect x="5" y="6" width="1" height="1" fill="#10121c"/><rect x="6" y="6" width="1" height="1" fill="#10121c"/><rect x="7" y="6" width="1" height="1" fill="#10121c"/><rect x="8" y="6" width="1" height="1" fill="#354454"/><rect x="9" y="6" width="1" height="1" fill="#354454"/><rect x="10" y="6" width="1" height="1" fill="#354454"/><rect x="11" y="6" width="1" height="1" fill="#354454"/><rect x="12" y="6" width="1" height="1" fill="#10121c"/><rect x="13" y="6" width="1" height="1" fill="#10121c"/><rect x="14" y="6" width="1" height="1" fill="#10121c"/><rect x="4" y="7" width="1" height="1" fill="#10121c"/><rect x="5" y="7" width="1" height="1" fill="#aa3145"/><rect x="6" y="7" width="1" height="1" fill="#aa3145"/><rect x="7" y="7" width="1" height="1" fill="#10121c"/><rect x="8" y="7" width="1" height="1" fill="#798a9b"/><rect x="9" y="7" width="1" height="1" fill="#798a9b"/><rect x="10" y="7" width="1" height="1" fill="#798a9b"/><rect x="11" y="7" width="1" height="1" fill="#798a9b"/><rect x="12" y="7" width="1" height="1" fill="#10121c"/><rect x="13" y="7" width="1" height="1" fill="#354454"/><rect x="14" y="7" width="1" height="1" fill="#10121c"/><rect x="3" y="8" width="1" height="1" fill="#10121c"/><rect x="4" y="8" width="1" height="1" fill="#aa3145"/><rect x="5" y="8" width="1" height="1" fill="#aa3145"/><rect x="6" y="8" width="1" height="1" fill="#aa3145"/><rect x="7" y="8" width="1" height="1" fill="#10121c"/><rect x="8" y="8" width="1" height="1" fill="#798a9b"/><rect x="9" y="8" width="1" height="1" fill="#d7dce1"/><rect x="10" y="8" width="1" height="1" fill="#d7dce1"/><rect x="11" y="8" width="1" height="1" fill="#d7dce1"/><rect x="12" y="8" width="1" height="1" fill="#10121c"/><rect x="13" y="8" width="1" height="1" fill="#354454"/><rect x="14" y="8" width="1" height="1" fill="#354454"/><rect x="15" y="8" width="1" height="1" fill="#10121c"/><rect x="3" y="9" width="1" height="1" fill="#10121c"/><rect x="4" y="9" width="1" height="1" fill="#aa3145"/><rect x="5" y="9" width="1" height="1" fill="#aa3145"/><rect x="6" y="9" width="1" height="1" fill="#aa3145"/><rect x="7" y="9" width="1" height="1" fill="#10121c"/><rect x="8" y="9" width="1" height="1" fill="#798a9b"/><rect x="9" y="9" width="1" height="1" fill="#798a9b"/><rect x="10" y="9" width="1" height="1" fill="#798a9b"/><rect x="11" y="9" width="1" height="1" fill="#798a9b"/><rect x="12" y="9" width="1" height="1" fill="#10121c"/><rect x="13" y="9" width="1" height="1" fill="#354454"/><rect x="14" y="9" width="1" height="1" fill="#354454"/><rect x="15" y="9" width="1" height="1" fill="#10121c"/><rect x="2" y="10" width="1" height="1" fill="#10121c"/><rect x="3" y="10" width="1" height="1" fill="#aa3145"/><rect x="4" y="10" width="1" height="1" fill="#aa3145"/><rect x="5" y="10" width="1" height="1" fill="#aa3145"/><rect x="6" y="10" width="1" height="1" fill="#10121c"/><rect x="7" y="10" width="1" height="1" fill="#10121c"/><rect x="8" y="10" width="1" height="1" fill="#798a9b"/><rect x="9" y="10" width="1" height="1" fill="#798a9b"/><rect x="10" y="10" width="1" height="1" fill="#798a9b"/><rect x="11" y="10" width="1" height="1" fill="#798a9b"/><rect x="12" y="10" width="1" height="1" fill="#10121c"/><rect x="13" y="10" width="1" height="1" fill="#10121c"/><rect x="14" y="10" width="1" height="1" fill="#354454"/><rect x="15" y="10" width="1" height="1" fill="#10121c"/><rect x="2" y="11" width="1" height="1" fill="#10121c"/><rect x="3" y="11" width="1" height="1" fill="#aa3145"/><rect x="4" y="11" width="1" height="1" fill="#aa3145"/><rect x="5" y="11" width="1" height="1" fill="#10121c"/><rect x="7" y="11" width="1" height="1" fill="#10121c"/><rect x="8" y="11" width="1" height="1" fill="#354454"/><rect x="9" y="11" width="1" height="1" fill="#354454"/><rect x="10" y="11" width="1" height="1" fill="#354454"/><rect x="11" y="11" width="1" height="1" fill="#354454"/><rect x="12" y="11" width="1" height="1" fill="#10121c"/><rect x="14" y="11" width="1" height="1" fill="#10121c"/><rect x="15" y="11" width="1" height="1" fill="#10121c"/><rect x="3" y="12" width="1" height="1" fill="#10121c"/><rect x="4" y="12" width="1" height="1" fill="#10121c"/><rect x="7" y="12" width="1" height="1" fill="#10121c"/><rect x="8" y="12" width="1" height="1" fill="#354454"/><rect x="9" y="12" width="1" height="1" fill="#798a9b"/><rect x="10" y="12" width="1" height="1" fill="#798a9b"/><rect x="11" y="12" width="1" height="1" fill="#354454"/><rect x="12" y="12" width="1" height="1" fill="#10121c"/><rect x="15" y="12" width="1" height="1" fill="#10121c"/><rect x="7" y="13" width="1" height="1" fill="#10121c"/><rect x="8" y="13" width="1" height="1" fill="#354454"/><rect x="9" y="13" width="1" height="1" fill="#798a9b"/><rect x="10" y="13" width="1" height="1" fill="#798a9b"/><rect x="11" y="13" width="1" height="1" fill="#354454"/><rect x="12" y="13" width="1" height="1" fill="#10121c"/><rect x="15" y="13" width="1" height="1" fill="#10121c"/><rect x="18" y="13" width="1" height="1" fill="#e8c27b"/><rect x="7" y="14" width="1" height="1" fill="#10121c"/><rect x="8" y="14" width="1" height="1" fill="#354454"/><rect x="9" y="14" width="1" height="1" fill="#798a9b"/><rect x="10" y="14" width="1" height="1" fill="#798a9b"/><rect x="11" y="14" width="1" height="1" fill="#354454"/><rect x="12" y="14" width="1" height="1" fill="#10121c"/><rect x="15" y="14" width="1" height="1" fill="#10121c"/><rect x="17" y="14" width="1" height="1" fill="#e8c27b"/><rect x="18" y="14" width="1" height="1" fill="#e8c27b"/><rect x="7" y="15" width="1" height="1" fill="#10121c"/><rect x="8" y="15" width="1" height="1" fill="#354454"/><rect x="9" y="15" width="1" height="1" fill="#798a9b"/><rect x="10" y="15" width="1" height="1" fill="#798a9b"/><rect x="11" y="15" width="1" height="1" fill="#354454"/><rect x="12" y="15" width="1" height="1" fill="#10121c"/><rect x="15" y="15" width="1" height="1" fill="#10121c"/><rect x="16" y="15" width="1" height="1" fill="#e8c27b"/><rect x="17" y="15" width="1" height="1" fill="#e8c27b"/><rect x="18" y="15" width="1" height="1" fill="#10121c"/><rect x="7" y="16" width="1" height="1" fill="#10121c"/><rect x="8" y="16" width="1" height="1" fill="#10121c"/><rect x="9" y="16" width="1" height="1" fill="#354454"/><rect x="10" y="16" width="1" height="1" fill="#354454"/><rect x="11" y="16" width="1" height="1" fill="#10121c"/><rect x="12" y="16" width="1" height="1" fill="#10121c"/><rect x="15" y="16" width="1" height="1" fill="#10121c"/><rect x="16" y="16" width="1" height="1" fill="#e8c27b"/><rect x="17" y="16" width="1" height="1" fill="#10121c"/><rect x="7" y="17" width="1" height="1" fill="#10121c"/><rect x="8" y="17" width="1" height="1" fill="#354454"/><rect x="9" y="17" width="1" height="1" fill="#10121c"/><rect x="10" y="17" width="1" height="1" fill="#10121c"/><rect x="11" y="17" width="1" height="1" fill="#354454"/><rect x="12" y="17" width="1" height="1" fill="#10121c"/><rect x="15" y="17" width="1" height="1" fill="#e8c27b"/><rect x="16" y="17" width="1" height="1" fill="#10121c"/><rect x="6" y="18" width="1" height="1" fill="#10121c"/><rect x="7" y="18" width="1" height="1" fill="#354454"/><rect x="8" y="18" width="1" height="1" fill="#354454"/><rect x="9" y="18" width="1" height="1" fill="#10121c"/><rect x="10" y="18" width="1" height="1" fill="#10121c"/><rect x="11" y="18" width="1" height="1" fill="#354454"/><rect x="12" y="18" width="1" height="1" fill="#354454"/><rect x="13" y="18" width="1" height="1" fill="#10121c"/><rect x="15" y="18" width="1" height="1" fill="#10121c"/><rect x="6" y="19" width="1" height="1" fill="#10121c"/><rect x="7" y="19" width="1" height="1" fill="#10121c"/><rect x="8" y="19" width="1" height="1" fill="#10121c"/><rect x="9" y="19" width="1" height="1" fill="#10121c"/><rect x="10" y="19" width="1" height="1" fill="#10121c"/><rect x="11" y="19" width="1" height="1" fill="#10121c"/><rect x="12" y="19" width="1" height="1" fill="#10121c"/><rect x="13" y="19" width="1" height="1" fill="#10121c"/></svg></div>
                 <div class="name">🛡️ 방랑 기사</div>
+                <div class="player-effects" id="player-effects" aria-label="플레이어 버프와 디버프"></div>
                 <div class="player-details"></div>
                 <div class="hp-bar-bg"><div class="hp-bar-fill" id="player-hp-fill"></div><div class="hp-text" id="player-hp-text">100 / 100</div></div>
             </div>
@@ -282,20 +362,21 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         <button class="ending-restart" onclick="restartRun()">새로운 여정 시작</button>
       </div>
     </div>
+    <div class="modal-overlay" id="collection-modal"><div class="modal-box"><button class="modal-close" onclick="document.getElementById('collection-modal').classList.remove('active')">닫기</button><div class="modal-title">📚 장비 발견 도감</div><p style="color:#aaa;font-size:.8rem">장착하거나 획득했던 장비만 상세 정보를 공개합니다. 저장은 이 브라우저에만 유지됩니다.</p><strong id="collection-count"></strong><div class="collection-grid" id="collection-grid"></div></div></div>
     <!-- 모달: 기록 -->
     <div class="modal-overlay" id="record-modal"><div class="modal-box"><button class="modal-close" onclick="document.getElementById('record-modal').classList.remove('active')">닫기</button><div class="modal-title">🏆 내 기록 및 업적</div><div style="background:#111; padding:10px; border-radius:8px; margin-bottom:15px; border:1px solid #333;"><div style="color:#aaa; margin-bottom:5px;">최고 도달 스테이지: <strong id="rec-max-stage" style="color:#d4af37;">1</strong></div><div style="color:#aaa;">누적 몬스터 처치: <strong id="rec-kills" style="color:#fa5252;">0</strong></div></div><div style="font-weight:bold; color:#4dabf7; margin-bottom:10px;">🌟 업적 목록</div><div id="achievement-list"></div></div></div>
     <div class="modal-overlay" id="status-modal"><div class="modal-box"><button class="modal-close" onclick="toggleStatus(false)">닫기</button><div class="modal-title">📊 상태창</div><div id="status-content"></div></div></div>
     <div class="modal-overlay" id="guide-modal"><div class="modal-box"><button class="modal-close" onclick="toggleGuide(false)">닫기</button><div class="modal-title">🎲 게임 방법</div><p style="font-size:0.9rem; color:#aaa;">주사위를 굴리고 유지할 것을 터치하세요. 족보를 만들어 적을 공격합니다.</p></div></div>
     
     <!-- 전리품 모달 -->
-    <div class="modal-overlay" id="trophy-modal"><div class="modal-box"><div class="modal-title" style="color:#fa5252;">💀 전리품 드랍!</div><div id="trophy-content" style="background:#222; padding:15px; border:1px solid #fa5252; margin-bottom:15px; text-align:center;"></div><div style="display:flex; gap:10px;"><button id="btn-take-trophy" style="flex:1; padding:10px; background:#4cd137; color:white; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">장착하기</button><button onclick="skipTrophy()" style="flex:1; padding:10px; background:#555; color:white; border:none; border-radius:5px; cursor:pointer;">버리기</button></div></div></div>
+    <div class="modal-overlay" id="trophy-modal"><div class="modal-box"><div class="modal-title" style="color:#fa5252;">💀 전리품 드랍!</div><div id="trophy-content" style="background:#222; padding:15px; border:1px solid #fa5252; margin-bottom:15px; text-align:center;"></div><div id="trophy-equipped-reference"></div><div style="display:flex; gap:10px;"><button id="btn-take-trophy" style="flex:1; padding:10px; background:#4cd137; color:white; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">장착하기</button><button onclick="skipTrophy()" style="flex:1; padding:10px; background:#555; color:white; border:none; border-radius:5px; cursor:pointer;">버리기</button></div></div></div>
     
     <!-- 👑 보스 전설 보상 모달 -->
     <div class="modal-overlay" id="boss-reward-modal">
         <div class="modal-box">
             <div class="modal-title" style="color:#ffd700; text-shadow: 0 0 10px #d4af37; text-align:center; margin-bottom:20px;">👑 보스 처치! 전설 전리품 선택</div>
             <p style="font-size:0.9rem; color:#ccc; text-align:center; margin-bottom:15px;">세 가지 전설 유물 중 하나를 선택하세요.</p>
-            <div id="boss-reward-container"></div>
+            <div id="boss-reward-container"></div><div id="boss-equipped-reference"></div>
         </div>
     </div>
 
@@ -303,8 +384,9 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
     <div class="modal-overlay" id="shop-modal">
         <div class="modal-box" style="padding-top:15px;">
             <div class="modal-title" style="margin-top:0px;">🛒 상점 (Shop)</div>
-            <div style="display:flex; justify-content:space-between; margin-bottom:10px; align-items:center;"><span>보상: <span id="shop-earned-gold" style="color:#4cd137;">+0</span></span><div style="display:flex; gap:10px; align-items:center;"><button onclick="rerollShop()" class="btn-top" style="position:static; padding:4px 8px;">🔄 리롤 (10G)</button><span>💰 <span id="shop-total-gold" style="color:#ffd700; font-weight:bold;">0</span></span></div></div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:10px; align-items:center;"><span>보상: <span id="shop-earned-gold" style="color:#4cd137;">+0</span></span><div style="display:flex; gap:10px; align-items:center;"><button id="shop-reroll-btn" onclick="rerollShop()" class="btn-top" style="position:static; padding:4px 8px;">🔄 리롤 (10G)</button><span>💰 <span id="shop-total-gold" style="color:#ffd700; font-weight:bold;">0</span></span></div></div>
             <div class="shop-info-panel"><div style="display:flex; justify-content:space-between; margin-bottom:8px; border-bottom:1px solid #333; padding-bottom:5px;"><span style="font-weight:bold; color:#fa5252;">❤️ 내 체력</span><span id="shop-my-hp" style="color:#4cd137; font-weight:bold;">100 / 100</span></div><div style="font-size:0.9rem; font-weight:bold; color:#d4af37; margin-bottom:8px;">🎒 현재 장착 장비</div><div id="shop-my-equips" style="display:grid; grid-template-columns: 1fr 1fr; gap:6px; font-size:0.75rem; margin-bottom:10px;"></div><div style="font-size:0.9rem; font-weight:bold; color:#d4af37; border-bottom:1px solid #333; padding-bottom:5px; margin-bottom:8px;">📖 강화된 족보 (Lv.2 이상)</div><div id="shop-my-hands" style="font-size:0.8rem; color:#ccc;"></div></div>
+            <div class="upgrade-card"><strong style="color:#f1cf7c">🔨 장비 강화 (시험 기능)</strong><p style="font-size:.76rem;color:#aaa;margin:5px 0">장착 장비를 최대 +3강까지 강화합니다. 단계마다 위력 +2 또는 방어 +1. 강화한 장비를 교체하면 강화도 사라집니다.</p><select id="upgrade-slot" onchange="refreshUpgradePanel()"></select><div id="upgrade-info" style="font-size:.8rem;margin:8px 0"></div><button id="upgrade-button" onclick="upgradeEquipment()">강화하기</button></div>
             <div id="shop-items-container"></div>
             <button onclick="nextStage()" style="width:100%; padding:12px; margin-top:10px; background:#4dabf7; color:white; border:none; border-radius:5px; font-weight:bold; cursor:pointer; font-size:1.05rem;">다음 전투로 ➡️</button>
         </div>
@@ -328,7 +410,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         { id: 'boss_slayer', name: '왕좌의 게임', desc: '첫 번째 보스를 처치했습니다.' }
     ];
 
-    function loadData() { let saved = localStorage.getItem('echoesData'); if(saved) gameData = JSON.parse(saved); }
+    function loadData() { let saved = localStorage.getItem('echoesData'); if(saved) {try {gameData = {...gameData,...JSON.parse(saved)};gameData.achieves ||= {};gameData.discovered ||= {};}catch(e){console.warn('저장 데이터 오류',e);}} }
     function saveData() { localStorage.setItem('echoesData', JSON.stringify(gameData)); }
     function unlockAchievement(id) {
         if(!gameData.achieves[id]) {
@@ -517,6 +599,49 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         playerPoison = 0;
     }
 
+    const HAND_RULES = {
+        yacht:'같은 눈금 5개', four_oak:'같은 눈금 4개 이상', full_house:'같은 눈금 3개 + 다른 눈금 2개',
+        str_large:'1·2·3·4·5 또는 2·3·4·5·6', str_small:'연속된 눈금 4개 이상',
+        three_oak:'같은 눈금 3개 이상', two_pair:'서로 다른 두 눈금이 각각 2개 이상', chance:'모든 조합 가능 · 주사위 눈금 합산'
+    };
+    function itemEffects(item){
+        if(!item)return '없음';
+        const keys=[['power','위력'],['defense','방어'],['rollBonus','리롤'],['lifesteal','공격 시 회복'],['regen','턴 종료 회복']];
+        const vals=keys.filter(([k])=>item[k]).map(([k,n])=>`${n} +${item[k]}`);
+        if(item.upgradeLevel) vals.push(`강화 +${item.upgradeLevel}`);
+        return vals.join(' · ') || item.desc || '추가 능력 없음';
+    }
+    function equippedGridHTML(){
+        return `<div class="loot-grid">${Object.keys(SLOT_NAMES).map(k=>`<div><span style="color:#bcae8a">${SLOT_NAMES[k]}</span><br><strong>${equipment[k]?.name || '비어 있음'}</strong><br><span style="color:#8cbce4">${itemEffects(equipment[k])}</span></div>`).join('')}</div>`;
+    }
+    function lootEquipmentHTML(){return `<details class="loot-equipment" open><summary>🎒 내 장비 8칸 확인 / 접기</summary>${equippedGridHTML()}</details>`;}
+    function updatePlayerEffects(){
+        const el=document.getElementById('player-effects'); if(!el)return;
+        let effects=[];
+        if(basePowerBonus)effects.push(`⚔️ 위력 +${basePowerBonus}`);
+        if(baseDefenseBonus)effects.push(`🛡️ 방어 +${baseDefenseBonus}`);
+        if(baseMaxRolls>2)effects.push(`🔄 리롤 +${baseMaxRolls-2}`);
+        let regen=0,life=0;
+        Object.values(equipment).forEach(i=>{if(i){regen+=i.regen||0;life+=i.lifesteal||0;}});
+        if(regen)effects.push(`💚 재생 +${regen}`);
+        if(life)effects.push(`🩸 흡혈 +${life}`);
+        el.innerHTML=effects.map(e=>`<span class="effect-chip">${e}</span>`).join('')+(playerPoison>0?`<span class="effect-chip negative">☠️ 중독 ${playerPoison}/턴</span>`:'') || '<span class="effect-chip">상태 효과 없음</span>';
+    }
+    function recordDiscovery(item){
+        if(!item?.id)return;
+        gameData.discovered ||= {};
+        if(!gameData.discovered[item.id]){gameData.discovered[item.id]=true;saveData();}
+    }
+    function renderCollection(){
+        loadData(); gameData.discovered ||= {};
+        const all=[...EQUIP_DB,...BOSS_REWARD_DB,...TROPHY_DB.map((t,i)=>({...t,id:t.id||`trophy_${i}`}))];
+        const count=all.filter(i=>gameData.discovered[i.id]).length;
+        document.getElementById('collection-count').textContent=`${count} / ${all.length} 발견`;
+        document.getElementById('collection-grid').innerHTML=all.map(i=>gameData.discovered[i.id]
+          ? `<div class="collection-item"><strong>${i.name}</strong><br><span style="color:#aaa">${SLOT_NAMES[i.slot]||'전리품'} · ${i.desc||itemEffects(i)}</span></div>`
+          : `<div class="collection-item unknown">❔ 미발견 장비<br><small>${SLOT_NAMES[i.slot]||'전리품'}</small></div>`).join('');
+    }
+    function showCollection(){renderCollection();document.getElementById('collection-modal').classList.add('active');}
     function toggleGuide(s) { document.getElementById('guide-modal').classList.toggle('active', s); }
     function toggleStatus(s) { 
         document.getElementById('status-modal').classList.toggle('active', s); 
@@ -538,7 +663,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 
             h += `<div style="color:#4cd137; font-weight:bold; margin-top:15px; margin-bottom:8px;">📖 족보 레벨</div>`;
             POKER_HANDS.forEach(ph => {
-                h += `<div style="display:flex; justify-content:space-between; margin-bottom:5px; font-size:0.9rem; border-bottom:1px dashed #444; padding-bottom:4px;"><span style="color:#ccc;">${ph.name} <small>(Lv.${ph.level})</small></span> <span style="color:#ccc;">${ph.basePower} / ${ph.baseFocus}</span></div>`;
+                h += `<div class="status-hand-row ${ph.level>1?'upgraded':''}"><div style="display:flex;justify-content:space-between;gap:5px"><strong style="color:${ph.level>1?'#f7d77a':'#ddd'}">${ph.level>1?'✨ ':''}${ph.name} (Lv.${ph.level})</strong><span>위력 ${ph.basePower} / 집중 ${ph.baseFocus}</span></div><span class="howto">🎲 ${HAND_RULES[ph.id]}</span></div>`;
             });
             document.getElementById('status-content').innerHTML = h;
         }
@@ -551,11 +676,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         document.getElementById('player-hp-text').innerText = `${Math.max(0, playerHp)} / ${PLAYER_MAX_HP}`;
         document.getElementById('stage-display').innerText = `STAGE ${currentStage}`;
         
-        let expectedMin = Math.max(0, enemyObj.minD - baseDefenseBonus);
-        let expectedMax = Math.max(0, enemyObj.maxD - baseDefenseBonus);
-        document.getElementById('enemy-intent').innerHTML = `⚔️ 공격: ${enemyObj.minD}\~${enemyObj.maxD} <span style="color:#4cd137;">(예상피해: ${expectedMin}\~${expectedMax})</span>`;
         document.getElementById('ui-gold').innerText = playerGold;
-        
         basePowerBonus = 0; baseDefenseBonus = 0; baseMaxRolls = 2;
         Object.keys(equipment).forEach(slot => {
             const slotEl = document.getElementById(`slot-${slot}`);
@@ -564,8 +685,16 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
                 basePowerBonus += item.power || 0; baseDefenseBonus += item.defense || 0; baseMaxRolls += item.rollBonus || 0;
                 slotEl.classList.add('filled'); slotEl.querySelector('.item-name').innerText = item.name;
             } else { slotEl.classList.remove('filled'); slotEl.querySelector('.item-name').innerText = "-"; }
+            slotEl.onclick = () => { slotEl.classList.toggle('details-open'); };
+            let tooltip = slotEl.querySelector('.equip-tooltip');
+            if(!tooltip){tooltip=document.createElement('div');tooltip.className='equip-tooltip';slotEl.appendChild(tooltip);}
+            tooltip.textContent = item ? itemEffects(item) : '장착한 장비가 없습니다.';
         });
+        const expectedMin = Math.max(0, enemyObj.minD - baseDefenseBonus);
+        const expectedMax = Math.max(0, enemyObj.maxD - baseDefenseBonus);
+        document.getElementById('enemy-intent').innerHTML = `⚔️ 공격: ${enemyObj.minD}~${enemyObj.maxD} <span style="color:#4cd137;">(예상피해: ${expectedMin}~${expectedMax})</span>`;
         document.getElementById('ui-power').innerText = `+${basePowerBonus}`; document.getElementById('ui-defense').innerText = `+${baseDefenseBonus}`;
+        updatePlayerEffects();
         document.getElementById('ui-rolls').innerText = rollsLeft; document.getElementById('ui-max-rolls').innerText = baseMaxRolls;
     }
 
@@ -719,14 +848,15 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 
     function openBossRewardModal() {
         const c = document.getElementById('boss-reward-container'); c.innerHTML = '';
+        document.getElementById('boss-equipped-reference').innerHTML = lootEquipmentHTML();
         let rewards = shuffleArray(BOSS_REWARD_DB).slice(0, 3);
         
         rewards.forEach(item => {
             const card = document.createElement('div'); card.className = 'reward-card epic';
-            card.innerHTML = `<div><strong style="color:#d4af37;">[${SLOT_NAMES[item.slot]}] ${item.name}</strong><br><span style="font-size:0.8rem;color:#ccc;">${item.desc}</span></div>`;
+            card.innerHTML = `<div><strong style="color:#d4af37;">[${SLOT_NAMES[item.slot]}] ${item.name}</strong><br><span style="font-size:0.8rem;color:#ccc;">${item.desc}</span><br><span style="font-size:.76rem;color:#9fc8e8">현재: ${equipment[item.slot]?.name||'비어 있음'} (${itemEffects(equipment[item.slot])})</span></div>`;
             const btn = document.createElement('button'); btn.className = 'shop-buy-btn'; btn.innerHTML = `획득`;
             btn.onclick = () => {
-                equipment[item.slot] = item;
+                equipment[item.slot] = {...item}; recordDiscovery(item);
                 document.getElementById('boss-reward-modal').classList.remove('active');
                 updateUI(); openShopModal(); 
             };
@@ -738,6 +868,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
     function checkTrophyDrop() {
         if (Math.random() < 0.3) {
             let tr = shuffleArray(TROPHY_DB)[0];
+            tr={...tr,id:tr.id||`trophy_${TROPHY_DB.findIndex(t=>t.name===tr.name)}`};
             let eff = []; if(tr.power) eff.push(`위력+${tr.power}`); if(tr.defense) eff.push(`방어+${tr.defense}`);
             
             const old = equipment['trophy'];
@@ -757,8 +888,9 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
                 </div>
                 <div style="font-size:.76rem;color:#b8a78d;margin-top:10px">${old ? '장착하면 기존 전리품은 사라집니다. 초록색은 상승, 빨간색은 하락입니다.' : '전리품 슬롯이 비어 있습니다.'}</div>`;
 
+            document.getElementById('trophy-equipped-reference').innerHTML=lootEquipmentHTML();
             let btnTake = document.getElementById('btn-take-trophy'); btnTake.innerText = old ? '교체하기' : '장착하기';
-            btnTake.onclick = () => { equipment['trophy'] = tr; document.getElementById('trophy-modal').classList.remove('active'); updateUI(); openShopModal(); };
+            btnTake.onclick = () => { equipment['trophy'] = {...tr}; recordDiscovery(tr); document.getElementById('trophy-modal').classList.remove('active'); updateUI(); openShopModal(); };
             document.getElementById('trophy-modal').classList.add('active');
         } else openShopModal();
     }
@@ -828,13 +960,21 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         else handsPanel.innerHTML = upgradedHands.map(h => `<span style="display:inline-block; background:#2a2a2a; border:1px solid #555; padding:2px 6px; border-radius:4px; margin-right:5px; margin-bottom:5px;">${h.name} <span style="color:#4cd137;">Lv.${h.level}</span> <span style="color:#aaa; font-size:0.7rem;">(위력${h.basePower}/집중${h.baseFocus})</span></span>`).join('');
     }
 
+    let shopRerollCount=0;
+    let potionBoughtThisShop=false;
+    function shopRerollCost(){return 10+shopRerollCount*10;}
+    function refreshShopRerollButton(){
+        const btn=document.getElementById('shop-reroll-btn');
+        btn.textContent=`🔄 상점 리롤 (${shopRerollCost()}G)`;
+        btn.disabled=playerGold<shopRerollCost();
+    }
     function generateShopItems() {
         const c = document.getElementById('shop-items-container'); c.innerHTML = '';
         let sEquips = shuffleArray(EQUIP_DB).slice(0, 3);
         let sPlanet = shuffleArray(PLANET_DB)[0];
-        let sHeal = CONSUMABLE_DB[0];
+        let sHeal = potionBoughtThisShop ? null : CONSUMABLE_DB[0];
         
-        [...sEquips, sPlanet, sHeal].forEach((item) => {
+        [...sEquips, sPlanet, ...(sHeal?[sHeal]:[])].forEach((item) => {
             let currentEquipText = ''; let slotText = item.slot ? `<span style="color:#4dabf7;">[${SLOT_NAMES[item.slot]}]</span> ` : '';
             if (item.type === 'equip' && equipment[item.slot]) {
                 let ce = equipment[item.slot]; let eff = [];
@@ -854,23 +994,50 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
                         if(!confirm(`[${SLOT_NAMES[item.slot]}] 교체하고 ${sell}G 획득? (기존 장비 파괴)`)) return;
                         playerGold += sell;
                     }
-                    equipment[item.slot] = item;
+                    equipment[item.slot] = {...item}; recordDiscovery(item);
                 } else if (item.type === 'planet') {
                     let t = POKER_HANDS.find(h=>h.id===item.target); t.level++; t.basePower+=t.pUp; t.baseFocus+=t.fUp;
-                } else if (item.type === 'heal') playerHp = Math.min(PLAYER_MAX_HP, playerHp + item.heal);
+                } else if (item.type === 'heal') { playerHp = Math.min(PLAYER_MAX_HP, playerHp + item.heal); potionBoughtThisShop=true; }
                 
                 playerGold -= item.price; document.getElementById('shop-total-gold').innerText = playerGold;
                 btn.disabled = true; btn.innerText = "품절";
-                updateUI(); updateShopInfoPanel();
+                updateUI(); updateShopInfoPanel(); refreshShopRerollButton(); refreshUpgradePanel();
             };
             card.appendChild(btn); c.appendChild(card);
         });
     }
 
+    function upgradeCost(item){return 20+15*(item.upgradeLevel||0);}
+    function refreshUpgradePanel(){
+        const sel=document.getElementById('upgrade-slot');
+        const prev=sel.value;
+        const entries=Object.entries(equipment).filter(([k,v])=>v);
+        sel.innerHTML=entries.length?entries.map(([k,v])=>`<option value="${k}">${SLOT_NAMES[k]} · ${v.name} +${v.upgradeLevel||0}</option>`).join(''):'<option value="">장착 장비 없음</option>';
+        if(entries.some(([k])=>k===prev))sel.value=prev;
+        const item=equipment[sel.value];
+        const btn=document.getElementById('upgrade-button');
+        if(!item){document.getElementById('upgrade-info').textContent='강화할 장비를 장착하세요.';btn.disabled=true;return;}
+        const lv=item.upgradeLevel||0, cost=upgradeCost(item);
+        document.getElementById('upgrade-info').textContent=`현재 +${lv} · ${itemEffects(item)} · 다음 강화 ${lv>=3?'최대 강화':cost+'G'}`;
+        btn.disabled=lv>=3||playerGold<cost;
+        btn.textContent=lv>=3?'최대 강화':`강화하기 (${cost}G)`;
+    }
+    function upgradeEquipment(){
+        const k=document.getElementById('upgrade-slot').value;
+        const item=equipment[k]; if(!item)return;
+        const lv=item.upgradeLevel||0,cost=upgradeCost(item);
+        if(lv>=3||playerGold<cost)return;
+        playerGold-=cost; item.upgradeLevel=lv+1;
+        if(item.defense && !item.power)item.defense+=1; else item.power=(item.power||0)+2;
+        document.getElementById('shop-total-gold').innerText=playerGold;
+        updateUI();updateShopInfoPanel();refreshShopRerollButton();refreshUpgradePanel();
+    }
     function rerollShop() {
-        if(playerGold < 10) return alert("골드가 부족합니다!");
-        playerGold -= 10; document.getElementById('shop-total-gold').innerText = playerGold;
-        updateUI(); generateShopItems();
+        const cost=shopRerollCost();
+        if(playerGold < cost) return alert(`골드가 부족합니다! (필요: ${cost}G)`);
+        playerGold -= cost; shopRerollCount++;
+        document.getElementById('shop-total-gold').innerText = playerGold;
+        updateUI(); generateShopItems(); refreshShopRerollButton(); refreshUpgradePanel();
     }
 
     function openShopModal() {
@@ -879,7 +1046,8 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         playerGold += earn; runStats.goldEarned += earn; updateUI(); updateShopInfoPanel();
         document.getElementById('shop-earned-gold').innerText = `+${earn}G`;
         document.getElementById('shop-total-gold').innerText = playerGold;
-        generateShopItems(); modal.classList.add('active');
+        shopRerollCount=0; potionBoughtThisShop=false;
+        generateShopItems(); refreshShopRerollButton(); refreshUpgradePanel(); modal.classList.add('active');
     }
 
     function nextStage() { if(runFinished) return; document.getElementById('shop-modal').classList.remove('active'); if(currentStage >= FINAL_STAGE) { showRunEnding(true); return; } currentStage++; setupStage(); resetTurn(true); }
