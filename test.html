@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ECHOES v2.21 — The Last Echo</title>
+    <title>ECHOES v2.22 — The Last Echo</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Noto+Sans+KR:wght@400;700&display=swap');
 
@@ -156,7 +156,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 
         .build-version { color:#a79a7e; font-size:0.72rem; letter-spacing:1.6px; text-align:center; margin:2px 0 8px; }
 
-/* v2.21 combat alignment, feedback, status and sticky sorting */
+/* v2.22 combat alignment, feedback, status and sticky sorting */
 .battle-arena{grid-template-rows:auto 1fr;padding-top:12px;min-height:340px;align-items:stretch}
 .battle-arena .reward-preview{grid-column:1/-1;grid-row:1;z-index:3;justify-self:center;background:#201b14ed;border:1px solid #ad883d;border-radius:7px;padding:6px 16px;margin:0 0 6px;font-size:.82rem;color:#ffd57a}
 .battle-arena .entity-card{grid-row:2;display:grid;grid-template-rows:112px 34px minmax(46px,auto) 22px;align-items:end;justify-items:center;gap:4px;min-height:245px;align-content:end}
@@ -185,7 +185,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 @media(max-width:420px){.battle-arena{min-height:305px}.battle-arena .entity-card{grid-template-rows:90px 31px minmax(55px,auto) 20px;min-height:215px}.status-equip-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 
-/* v2.21: shared ground line, opposing characters, details below combatants */
+/* v2.22: shared ground line, opposing characters, details below combatants */
 .battle-arena{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:44px minmax(0,1fr);gap:0 10px;min-height:330px;padding:10px 12px 14px;align-items:stretch}
 .battle-arena .reward-preview{grid-row:1;align-self:start;margin:0;max-width:92%;box-sizing:border-box}
 .battle-arena .entity-card{grid-row:2;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:140px 28px minmax(48px,auto) 22px;gap:3px;align-content:end;justify-items:center;min-height:245px;padding:5px 8px 7px;background:rgba(11,14,22,.55);border-color:rgba(142,132,118,.45)}
@@ -203,7 +203,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 @media(max-width:420px){.battle-arena{min-height:292px;padding:8px 5px 10px;gap:0 5px;grid-template-rows:42px minmax(0,1fr)}.battle-arena .entity-card{grid-template-rows:105px 26px minmax(54px,auto) 20px;min-height:218px;padding:4px}.battle-arena .pixel-figure{height:105px;margin-right:0}.battle-arena .enemy-card .pixel-figure{margin-left:0}.battle-arena .pixel-sprite{height:104px;width:104px}}
 
     
-/* v2.21 — wide theatrical stage: actors at opposite edges, open center */
+/* v2.22 — wide theatrical stage: actors at opposite edges, open center */
 .battle-arena {
   grid-template-columns: minmax(0, 29%) minmax(0, 42%) minmax(0, 29%);
   grid-template-rows: 46px minmax(0,1fr);
@@ -258,7 +258,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 }
 
 
-/* v2.21 - status clarity, loot comparison, collections */
+/* v2.22 - status clarity, loot comparison, collections */
 .battle-arena .player-effects {grid-row:3;grid-column:1;align-self:center;width:100%;box-sizing:border-box;}
 .player-effects {font-size:.75rem; color:#b7d9f8; min-height:34px; text-align:center; display:flex; flex-wrap:wrap; gap:4px; justify-content:center; align-items:center; padding:3px;}
 .effect-chip {display:inline-block; border:1px solid #42637c; background:#14202d; border-radius:5px; padding:2px 5px;}
@@ -297,7 +297,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
     <div id="intro-screen">
         <div class="intro-title">ECHOES</div>
         <div class="intro-subtitle">Dice of the Dark</div>
-        <div class="build-version">TEST BUILD · v2.21</div>
+        <div class="build-version">TEST BUILD · v2.22</div>
         <button class="intro-btn start" onclick="startGame()">▶ 새 게임 시작</button>
         <button class="intro-btn" id="continue-btn" onclick="continueGame()" style="display:none;border-color:#d4af37;color:#f4d77e">↪ 이어하기</button>
         <button class="intro-btn" onclick="showRecords()">🏆 기록 및 업적</button>
@@ -312,7 +312,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         </div>
 
         <h1 class="game-title">ECHOES</h1>
-        <div class="build-version">TEST BUILD · v2.21</div>
+        <div class="build-version">TEST BUILD · v2.22</div>
         <div id="stage-display">STAGE 1</div>
 
         <div class="battle-arena">
@@ -583,7 +583,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
         { id: 'chance', name: '찬스', basePower: 0, baseFocus: 1, level: 1, pUp: 0, fUp: 0 }
     ];
 
-    // v2.21: 이어하기는 이 브라우저의 localStorage에만 저장됩니다.
+    // v2.22: 이어하기는 이 브라우저의 localStorage에만 저장됩니다.
     const RUN_SAVE_KEY = 'echoesRun_v218';
     let shopOffers = [];
     let shopSold = [];
@@ -1158,7 +1158,7 @@ body {background:radial-gradient(ellipse at 50% 0%,#282130 0%,#101015 55%,#090a0
 </script>
 <script>
 window.addEventListener('load',()=>{const tests=[];const check=(name,ok)=>tests.push({name,pass:!!ok});try{
- check('버전 표기',document.title.includes('v2.21'));
+ check('버전 표기',document.title.includes('v2.22'));
  check('장비 상세 토글 초기 상태',!equipmentDetailsVisible);
  toggleEquipmentDetails();check('장비 상세 켜기',equipmentDetailsVisible && document.getElementById('equipment-details-btn').getAttribute('aria-pressed')==='true');toggleEquipmentDetails();check('장비 상세 끄기',!equipmentDetailsVisible);
  check('족보 8종',POKER_HANDS.length===8);
@@ -1166,7 +1166,21 @@ window.addEventListener('load',()=>{const tests=[];const check=(name,ok)=>tests.
  check('최종 보스 스테이지 15',BOSS_DB.some(b=>b.id==='b15'));
  check('저장 함수 존재',typeof saveRun==='function' || typeof saveRunState==='function' || typeof persistRun==='function');
  check('장비 슬롯 8개',document.querySelectorAll('.equip-slot').length===8);
+ // 전리품을 장착하거나 버렸을 때 상점으로 넘어가는지 실제 함수 호출로 검증
+ check('보상→상점 전환 함수 존재',typeof finishRewardAndOpenShop==='function');
+ const testRewardTransition=(label,id)=>{
+   try {
+     const shop=document.getElementById('shop-modal'),reward=document.getElementById(id);
+     shop.classList.remove('active');reward.classList.add('active');
+     finishRewardAndOpenShop(id);
+     check(label,shop.classList.contains('active')&&!reward.classList.contains('active'));
+     shop.classList.remove('active');
+   } catch(e) {check(label,false);tests.push({name:label+' 오류',pass:false,error:String(e)});}
+ };
+ testRewardTransition('일반 전리품→상점 전환','trophy-modal');
+ testRewardTransition('보스 전리품→상점 전환','boss-reward-modal');
+
  check('상태창 곱셈 표시',(()=>{try{if(!enemyObj)setupStage();toggleStatus(true);const t=document.getElementById('status-content').textContent;toggleStatus(false);return t.includes('× 집중')}catch(e){return false}})());
- }catch(e){tests.push({name:'테스트 실행 중 예외',pass:false,error:String(e)})}const out=document.createElement('pre');out.id='test-results';out.textContent=JSON.stringify(tests,null,2);document.body.appendChild(out);document.body.dataset.testDone='true';document.body.dataset.failed=tests.filter(t=>!t.pass).length;});
+ }catch(e){tests.push({name:'테스트 실행 중 예외',pass:false,error:String(e)})}const panel=document.createElement('section');panel.id='test-summary';panel.style.cssText='position:relative;z-index:400;background:#151b22;color:#eee;padding:20px;margin:20px auto;max-width:700px;border:2px solid #c6a052;border-radius:12px;font:16px system-ui';const fails=tests.filter(t=>!t.pass).length;panel.innerHTML='<h1 style="color:#f1cb77">🧪 ECHOES v2.22 자동 테스트</h1><p>이 페이지를 열면 검사가 자동 실행됩니다. 게임 플레이 저장 데이터는 테스트 중 변경될 수 있으니 중요한 진행 중에는 실행하지 마세요.</p><h2 style="color:'+(fails?'#ff7777':'#81e7a0')+'">'+(fails?'실패 '+fails+'건':'전체 통과')+' · '+(tests.length-fails)+'/'+tests.length+'</h2>'+tests.map(x=>'<div style="padding:7px;border-bottom:1px solid #38414b">'+(x.pass?'✅':'❌')+' '+x.name+(x.error?' · '+x.error:'')+'</div>').join('')+'<p><a style="color:#9fd5ff" href="index.html">게임으로 돌아가기</a></p>';document.body.appendChild(panel);const out=document.createElement('pre');out.id='test-results';out.style.display='none';out.textContent=JSON.stringify(tests,null,2);document.body.appendChild(out);document.body.dataset.testDone='true';document.body.dataset.failed=fails;});
 </script></body>
 </html>
